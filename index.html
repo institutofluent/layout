@@ -17,18 +17,12 @@
     font-family: Arial, Helvetica, sans-serif;
     background:#fff;
     color:var(--text);
-    padding: 40px 0 0 0; /* margem apenas no topo da página */
-    display: flex;
-    justify-content: center; /* centraliza horizontalmente */
-  }
-
-  .table-container{
-    width: 800px; /* largura fixa, suficiente para não encostar nas laterais */
-    margin: 0 auto; /* centralizada */
+    padding: 40px 20px 0 20px; /* margem superior e laterais */
   }
 
   table{
-    width:100%;
+    width: calc(100% - 40px); /* diminui a largura para ter margem */
+    margin: 0 auto; /* centraliza a tabela */
     border-collapse:collapse;
   }
 
@@ -50,11 +44,11 @@
   }
 
   th:nth-child(1), td:nth-child(1){ width:50px; text-align:center; }
-  th:nth-child(2), td:nth-child(2){ width:200px; }
-  th:nth-child(3), td:nth-child(3){ width:130px; }
-  th:nth-child(4), td:nth-child(4){ width:120px; }
-  th:nth-child(5), td:nth-child(5){ width:220px; }
-  th:nth-child(6), td:nth-child(6){ width:140px; text-align:right; }
+  th:nth-child(2), td:nth-child(2){ width:220px; }
+  th:nth-child(3), td:nth-child(3){ width:150px; }
+  th:nth-child(4), td:nth-child(4){ width:140px; }
+  th:nth-child(5), td:nth-child(5){ width:260px; }
+  th:nth-child(6), td:nth-child(6){ width:160px; text-align:right; }
 
   .dotcol{
     font-weight:bold;
@@ -96,29 +90,27 @@
 </style>
 </head>
 <body>
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th></th>
-          <th>Nome</th>
-          <th>CPF</th>
-          <th>Curso</th>
-          <th>Escola</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="dotcol">...</td>
-          <td class="nome">JOSENIR<br>ADOLFO DA<br>SILVA</td>
-          <td class="cpf">980.237.643-49</td>
-          <td class="curso">ENSINO<br>MÉDIO</td>
-          <td class="escola">CENTRO REFERENCIAL<br>DE EDUCAÇÃO</td>
-          <td class="status">Certificado<br>Validado</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Curso</th>
+        <th>Escola</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="dotcol">...</td>
+        <td class="nome">JOSENIR<br>ADOLFO DA<br>SILVA</td>
+        <td class="cpf">980.237.643-49</td>
+        <td class="curso">ENSINO<br>MÉDIO</td>
+        <td class="escola">CENTRO REFERENCIAL<br>DE EDUCAÇÃO</td>
+        <td class="status">Certificado<br>Validado</td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 </html>
