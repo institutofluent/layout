@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tabela - Topo (com margens)</title>
+<title>Tabela - Topo (com margens corrigido)</title>
 <style>
   :root{
     --header-bg: #b5aee8;    
@@ -17,12 +17,17 @@
     font-family: Arial, Helvetica, sans-serif;
     background:#fff;
     color:var(--text);
-    padding: 40px 20px 0 20px; /* margem superior e laterais */
+    padding-top:40px; /* só espaço em cima */
+  }
+
+  .table-container{
+    width: 90%;          /* ocupa 90% da largura da página */
+    max-width: 1000px;   /* limite máximo */
+    margin: 0 auto;      /* centraliza horizontalmente */
   }
 
   table{
-    width: calc(100% - 40px); /* diminui a largura para ter margem */
-    margin: 0 auto; /* centraliza a tabela */
+    width:100%;
     border-collapse:collapse;
   }
 
@@ -90,27 +95,29 @@
 </style>
 </head>
 <body>
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>Nome</th>
-        <th>CPF</th>
-        <th>Curso</th>
-        <th>Escola</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="dotcol">...</td>
-        <td class="nome">JOSENIR<br>ADOLFO DA<br>SILVA</td>
-        <td class="cpf">980.237.643-49</td>
-        <td class="curso">ENSINO<br>MÉDIO</td>
-        <td class="escola">CENTRO REFERENCIAL<br>DE EDUCAÇÃO</td>
-        <td class="status">Certificado<br>Validado</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Curso</th>
+          <th>Escola</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="dotcol">...</td>
+          <td class="nome">JOSENIR<br>ADOLFO DA<br>SILVA</td>
+          <td class="cpf">980.237.643-49</td>
+          <td class="curso">ENSINO<br>MÉDIO</td>
+          <td class="escola">CENTRO REFERENCIAL<br>DE EDUCAÇÃO</td>
+          <td class="status">Certificado<br>Validado</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
