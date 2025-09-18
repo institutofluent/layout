@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tabela - Topo (idêntico)</title>
+<title>Tabela - Topo (com margens)</title>
 <style>
   :root{
-    --header-bg: #b5aee8;    /* cabeçalho roxo */
-    --cpf-red: #e53935;      /* cor do CPF */
+    --header-bg: #b5aee8;    
+    --cpf-red: #e53935;      
     --text: #222222;
     --muted: #6e6e6e;
   }
@@ -17,6 +17,13 @@
     font-family: Arial, Helvetica, sans-serif;
     background:#fff;
     color:var(--text);
+    padding: 20px; /* margem geral da página */
+  }
+
+  .table-container{
+    max-width: 1200px; /* largura máxima para não esticar demais */
+    margin: 20px auto 0 auto; /* margem no topo e centralizada */
+    overflow-x: auto; /* caso a tela seja muito pequena */
   }
 
   table{
@@ -41,7 +48,6 @@
     border-top:1px solid #ddd;
   }
 
-  /* colunas mais soltas */
   th:nth-child(1), td:nth-child(1){ width:50px; text-align:center; }
   th:nth-child(2), td:nth-child(2){ width:220px; }
   th:nth-child(3), td:nth-child(3){ width:150px; }
@@ -89,27 +95,29 @@
 </style>
 </head>
 <body>
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>Nome</th>
-        <th>CPF</th>
-        <th>Curso</th>
-        <th>Escola</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="dotcol">...</td>
-        <td class="nome">JOSENIR<br>ADOLFO DA<br>SILVA</td>
-        <td class="cpf">980.237.643-49</td>
-        <td class="curso">ENSINO<br>MÉDIO</td>
-        <td class="escola">CENTRO REFERENCIAL<br>DE EDUCAÇÃO</td>
-        <td class="status">Certificado<br>Validado</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Curso</th>
+          <th>Escola</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="dotcol">...</td>
+          <td class="nome">JOSENIR<br>ADOLFO DA<br>SILVA</td>
+          <td class="cpf">980.237.643-49</td>
+          <td class="curso">ENSINO<br>MÉDIO</td>
+          <td class="escola">CENTRO REFERENCIAL<br>DE EDUCAÇÃO</td>
+          <td class="status">Certificado<br>Validado</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
