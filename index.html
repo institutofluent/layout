@@ -3,20 +3,22 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tabela - Topo (idêntico)</title>
+<title>Tabela - Layout com Margens</title>
 <style>
   :root{
     --header-bg: #b5aee8;    /* cabeçalho roxo */
     --cpf-red: #e53935;      /* cor do CPF */
     --text: #222222;
     --muted: #6e6e6e;
+    --page-margin: 20px;     /* Margem para a página */
   }
 
   body{
-    margin:0;
+    margin: var(--page-margin);
     font-family: Arial, Helvetica, sans-serif;
     background:#fff;
     color:var(--text);
+    box-sizing: border-box;
   }
 
   table{
@@ -86,6 +88,50 @@
     line-height:1.2;
     white-space:nowrap;
   }
+
+  /* Responsividade para telas menores */
+  @media (max-width: 768px) {
+    body {
+      margin: 10px;
+    }
+    
+    thead {
+      display: none;
+    }
+    
+    tbody tr {
+      display: block;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 10px;
+    }
+    
+    tbody td {
+      display: block;
+      width: 100% !important;
+      box-sizing: border-box;
+      border: none;
+      padding: 8px 10px;
+      text-align: left !important;
+    }
+    
+    tbody td:before {
+      content: attr(data-label);
+      font-weight: bold;
+      display: inline-block;
+      width: 40%;
+      color: var(--header-bg);
+    }
+    
+    /* Adicionando labels para cada campo na visualização mobile */
+    td:nth-child(1):before { content: "Nº"; }
+    td:nth-child(2):before { content: "Nome: "; }
+    td:nth-child(3):before { content: "CPF: "; }
+    td:nth-child(4):before { content: "Curso: "; }
+    td:nth-child(5):before { content: "Escola: "; }
+    td:nth-child(6):before { content: "Status: "; }
+  }
 </style>
 </head>
 <body>
@@ -102,12 +148,21 @@
     </thead>
     <tbody>
       <tr>
-        <td class="dotcol">...</td>
-        <td class="nome">JOSENIR<br>ADOLFO DA<br>SILVA</td>
-        <td class="cpf">980.237.643-49</td>
-        <td class="curso">ENSINO<br>MÉDIO</td>
-        <td class="escola">CENTRO REFERENCIAL<br>DE EDUCAÇÃO</td>
-        <td class="status">Certificado<br>Validado</td>
+        <td class="dotcol" data-label="Nº">...</td>
+        <td class="nome" data-label="Nome">JOSENIR<br>ADOLFO DA<br>SILVA</td>
+        <td class="cpf" data-label="CPF">980.237.643-49</td>
+        <td class="curso" data-label="Curso">ENSINO<br>MÉDIO</td>
+        <td class="escola" data-label="Escola">CENTRO REFERENCIAL<br>DE EDUCAÇÃO</td>
+        <td class="status" data-label="Status">Certificado<br>Validado</td>
+      </tr>
+      <!-- Linha adicional para demonstração -->
+      <tr>
+        <td class="dotcol" data-label="Nº">...</td>
+        <td class="nome" data-label="Nome">MARIA<br>OLIVEIRA<br>SANTOS</td>
+        <td class="cpf" data-label="CPF">123.456.789-00</td>
+        <td class="curso" data-label="Curso">ENSINO<br>FUNDAMENTAL</td>
+        <td class="escola" data-label="Escola">ESCOLA ESTADUAL<br>PEDRO II</td>
+        <td class="status" data-label="Status">Pendente<br>Análise</td>
       </tr>
     </tbody>
   </table>
