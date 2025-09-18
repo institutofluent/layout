@@ -17,13 +17,14 @@
     font-family: Arial, Helvetica, sans-serif;
     background:#fff;
     color:var(--text);
-    padding: 40px 20px 0 20px; /* margem no topo e laterais */
+    padding: 40px 0 0 0; /* margem apenas no topo da página */
+    display: flex;
+    justify-content: center; /* centraliza horizontalmente */
   }
 
   .table-container{
-    width: 80%; /* tabela menor que a página para margem direita visível */
-    max-width: 1000px; /* limite máximo */
-    margin: 20px auto; /* margem topo e centralizada */
+    width: 800px; /* largura fixa, suficiente para não encostar nas laterais */
+    margin: 0 auto; /* centralizada */
   }
 
   table{
