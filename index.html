@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tabela - Topo (idêntico)</title>
+<title>Tabela - Topo (com margens e centralização)</title>
 <style>
   :root{
-    --header-bg: #b5aee8;    /* cabeçalho roxo */
-    --row-bg: #f3f0fa;       /* fundo das informações: roxo quase branco */
-    --cpf-red: #e53935;      /* cor do CPF */
-    --muted: #6e6e6e;        /* cor do texto secundário */
+    --header-bg: #b5aee8;    
+    --row-bg: #f3f0fa;       
+    --cpf-red: #e53935;      
+    --muted: #6e6e6e;        
   }
 
   body{
@@ -17,14 +17,14 @@
     font-family: Arial, Helvetica, sans-serif;
     background:#fff;
     color:#000;
+    padding-top:40px;
   }
 
   table{
-    width:100%;
+    width:90%;               /* diminui largura para deixar margem */
+    max-width:1100px;        
+    margin:0 auto;            /* centraliza horizontalmente */
     border-collapse:collapse;
-    max-width:1100px;      
-    margin-left:auto;
-    margin-right:auto;     
   }
 
   thead th{
@@ -74,12 +74,13 @@
     font-size:14px;
     color:#333;
     line-height:1.4;
-    text-align:center;
+    text-align:center; /* centraliza texto */
   }
 
   .download{
-    display:inline-block;
-    margin:0 auto 40px auto;
+    display:block;         /* permite margin:auto funcionar */
+    width:max-content;     /* mantém largura do conteúdo */
+    margin:0 auto 40px auto; /* centraliza botão */
     padding:12px 20px;
     background:#4a6cf7;
     color:#fff;
@@ -87,6 +88,7 @@
     text-decoration:none;
     border-radius:6px;
   }
+
   .download:hover{ background:#354cd4; }
 </style>
 </head>
@@ -119,8 +121,6 @@
     Caso estejam corretas, faça o download do documento oficial em PDF abaixo.
   </div>
 
-  <div style="text-align:center;">
-    <a href="Diploma_FTEC_Josenir.pdf" class="download" download>⬇️ Baixar Certificado</a>
-  </div>
+  <a href="Diploma_FTEC_Josenir.pdf" class="download" download>⬇️ Baixar Certificado</a>
 </body>
 </html>
