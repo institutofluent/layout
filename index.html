@@ -20,6 +20,8 @@
       position:relative;
       min-height: 100vh;
       overflow-x: auto;
+      display: flex;
+      flex-direction: column;
     }
 
     table{
@@ -106,47 +108,61 @@
       min-width: 160px;
     }
 
-    /* CONTAINER CENTRALIZADO PARA TEXTO E BOTÃO */
-    .centro-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    /* CONTAINER PRINCIPAL FLEX */
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* CONTAINER DA TABELA */
+    .table-container {
+      flex: 0 0 auto;
+      padding: 20px 0;
+    }
+
+    /* CONTAINER CENTRALIZADO NO MEIO DA PÁGINA */
+    .center-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
       text-align: center;
-      width: 100%;
-      max-width: 600px;
-      z-index: 1;
+      padding: 40px 20px;
     }
 
     .texto{
-      font-size:16px;
+      font-size:18px;
       color:#333;
       line-height:1.6;
-      margin-bottom: 25px;
+      margin-bottom: 30px;
+      max-width: 600px;
     }
 
     .download{
       display:inline-block;
-      padding:14px 25px;
+      padding:16px 32px;
       background:#4a6cf7;
       color:#fff;
       font-weight:bold;
       text-decoration:none;
       border-radius:8px;
-      font-size:16px;
+      font-size:18px;
       transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(74, 108, 247, 0.3);
     }
 
     .download:hover{ 
       background:#354cd4; 
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(74, 108, 247, 0.4);
     }
 
     #fundo-personalizavel {
       position: fixed;
-      top: 350px;
-      left: 0px;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       background-color: #a99ef7;
@@ -155,7 +171,7 @@
       pointer-events: none;
     }
 
-    /* BOTÃO DO WHATSAPP AUMENTADO */
+    /* BOTÃO DO WHATSAPP */
     .whatsapp-container {
       position: fixed;
       bottom: 20px;
@@ -297,20 +313,18 @@
       }
       
       /* Ajustes para o container centralizado em mobile */
-      .centro-container {
-        width: 90%;
-        padding: 0 15px;
-        box-sizing: border-box;
+      .center-container {
+        padding: 20px 15px;
       }
       
       .texto {
-        font-size: 14px;
+        font-size: 16px;
         margin-bottom: 20px;
       }
       
       .download {
-        padding: 12px 20px;
-        font-size: 14px;
+        padding: 14px 25px;
+        font-size: 16px;
       }
       
       /* Ajustes para o WhatsApp em mobile */
@@ -339,39 +353,42 @@
   </style>
 </head>
 <body>
-  <table>  
-    <thead>  
-      <tr>  
-        <th class="dotcol"></th>  
-        <th class="nome">Nome</th>  
-        <th class="cpf">CPF</th>  
-        <th class="curso">Curso</th>  
-        <th class="escola">Escola</th>  
-        <th class="status">Status</th>  
-      </tr>  
-    </thead>  
-    <tbody>  
-      <tr>  
-        <td class="dotcol">...</td>  
-        <td class="nome">ANA CÉLIA PEREIRA DA SILVA</td>  
-        <td class="cpf">802.846.473-49</td>  
-        <td class="curso">ENSINO MÉDIO</td>  
-        <td class="escola">CENTRO REFERENCIAL DE EDUCAÇÃO</td>  
-        <td class="status">Certificado Validado</td>  
-      </tr>  
-    </tbody>  
-  </table>    
+  <div class="main-container">
+    <div class="table-container">
+      <table>  
+        <thead>  
+          <tr>  
+            <th class="dotcol"></th>  
+            <th class="nome">Nome</th>  
+            <th class="cpf">CPF</th>  
+            <th class="curso">Curso</th>  
+            <th class="escola">Escola</th>  
+            <th class="status">Status</th>  
+          </tr>  
+        </thead>  
+        <tbody>  
+          <tr>  
+            <td class="dotcol">...</td>  
+            <td class="nome">ANA CÉLIA PEREIRA DA SILVA</td>  
+            <td class="cpf">802.846.473-49</td>  
+            <td class="curso">ENSINO MÉDIO</td>  
+            <td class="escola">CENTRO REFERENCIAL DE EDUCAÇÃO</td>  
+            <td class="status">Certificado Validado</td>  
+          </tr>  
+        </tbody>  
+      </table>
+    </div>
 
-  <!-- Container centralizado para texto e botão -->
-  <div class="centro-container">
-    <div class="texto">  
-      Por favor, verifique se as informações acima coincidem com o certificado emitido.<br>  
-      Caso estejam corretas, faça o download do documento oficial em PDF abaixo.  
-    </div>    
+    <div class="center-container">
+      <div class="texto">  
+        Por favor, verifique se as informações acima coincidem com o certificado emitido.<br>  
+        Caso estejam corretas, faça o download do documento oficial em PDF abaixo.  
+      </div>    
 
-    <a href="certificado.pdf" class="download" download>  
-      ⬇️ Confira  
-    </a>
+      <a href="certificado.pdf" class="download" download>  
+        ⬇️ Confira  
+      </a>
+    </div>
   </div>
 
   <div id="fundo-personalizavel"></div>
