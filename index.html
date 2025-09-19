@@ -18,15 +18,25 @@
     font-family: Arial, Helvetica, sans-serif;
     background:#fff;
     color:#000;
-    padding: 20px 0; /* Adicionado para espaçamento geral */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .container {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
   }
 
   table{
     width:100%;
     border-collapse:collapse;
-    max-width:1100px;      
-    margin-left:auto;
-    margin-right:auto;     
+    margin-bottom: 30px;
   }
 
   thead th{
@@ -86,12 +96,11 @@
     white-space:nowrap;
   }
 
-  /* Estilos para o texto e botão */
+  /* Estilos para o texto e botão - CORRIGIDOS */
   .footer-content {
-    max-width: 1100px;
-    margin: 30px auto 0 auto;
     text-align: center;
-    padding: 0 20px;
+    width: 100%;
+    margin-top: 20px;
   }
 
   .verification-text {
@@ -99,6 +108,7 @@
     margin-bottom: 20px;
     font-size: 16px;
     line-height: 1.5;
+    text-align: center;
   }
 
   .download-button {
@@ -110,6 +120,8 @@
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
+    display: inline-block;
+    margin: 0 auto;
   }
 
   .download-button:hover {
@@ -118,32 +130,34 @@
 </style>
 </head>
 <body>
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>Nome</th>
-        <th>CPF</th>
-        <th>Curso</th>
-        <th>Escola</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="dotcol">...</td>
-        <td class="nome">JOSENIR<br>ADOLFO DA<br>SILVA</td>
-        <td class="cpf">980.237.643-49</td>
-        <td class="curso">ENSINO<br>MÉDIO</td>
-        <td class="escola">CENTRO REFERENCIAL<br>DE EDUCAÇÃO</td>
-        <td class="status">Certificado<br>Validado</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="container">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Curso</th>
+          <th>Escola</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="dotcol">...</td>
+          <td class="nome">JOSENIR<br>ADOLFO DA<br>SILVA</td>
+          <td class="cpf">980.237.643-49</td>
+          <td class="curso">ENSINO<br>MÉDIO</td>
+          <td class="escola">CENTRO REFERENCIAL<br>DE EDUCAÇÃO</td>
+          <td class="status">Certificado<br>Validado</td>
+        </tr>
+      </tbody>
+    </table>
 
-  <div class="footer-content">
-    <p class="verification-text">Verifique se as informações coincidem com o PDF.</p>
-    <button class="download-button">Download do PDF</button>
+    <div class="footer-content">
+      <p class="verification-text">Verifique se as informações coincidem com o PDF.</p>
+      <button class="download-button">Download do PDF</button>
+    </div>
   </div>
 </body>
 </html>
