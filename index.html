@@ -91,6 +91,17 @@
   }
 
   .download:hover{ background:#354cd4; }
+
+  /* Fundo roxo ajustável */
+  .fundo-roxo{
+    position:absolute;
+    left:0;
+    right:0;
+    top:400px;   /* ajuste vertical */
+    height:100px; /* ajuste de altura */
+    background:#b5aee8; /* cor do fundo */
+    z-index:-1; /* para não sobrepor o texto e botão */
+  }
 </style>
 </head>
 <body>
@@ -129,8 +140,6 @@
   </a>
 
   <!-- Fundo roxo totalmente ajustável -->
-  <div class="posicionavel" 
-       style="top:400px; left:0; width:100vw; height:100px; background:#b5aee8; margin:0;">
-  </div>
+  <div class="fundo-roxo"></div>
 </body>
 </html>
