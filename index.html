@@ -334,6 +334,59 @@
         transform-origin: bottom right;
       }
     }
+
+    /* NOVAS REGRAS PARA CORRIGIR O PROBLEMA DE ZOOM */
+    .whatsapp-wrapper {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      z-index: 10000;
+      padding: 20px;
+      box-sizing: border-box;
+      pointer-events: none;
+    }
+    
+    .whatsapp-container {
+      position: relative;
+      pointer-events: all;
+      bottom: auto;
+      right: auto;
+      display: inline-block;
+    }
+    
+    /* Ajustar posicionamento para diferentes níveis de zoom */
+    @media screen and (max-width: 400px), screen and (max-height: 400px) {
+      .whatsapp-wrapper {
+        padding: 10px;
+      }
+      
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .whatsapp-icon {
+        width: 28px;
+        height: 28px;
+      }
+      
+      .speech-bubble {
+        bottom: 60px;
+        right: -5px;
+        font-size: 12px;
+        padding: 8px 12px;
+      }
+    }
+    
+    /* Prevenir que o botão saia da tela com zoom */
+    body {
+      overflow-x: hidden;
+    }
+    
+    /* Garantir que o botão sempre fique visível */
+    .whatsapp-wrapper {
+      transition: all 0.3s ease;
+    }
   </style>
 </head>
 <body>
@@ -371,14 +424,16 @@
 
   <div id="fundo-personalizavel"></div>
   
-  <!-- Container para o botão do WhatsApp e balão -->
-  <div class="whatsapp-container">
-    <div class="speech-bubble">
-      <div class="close-bubble">×</div>
-      Fale Conosco
-    </div>
-    <div class="whatsapp-float">
-      <div class="whatsapp-icon"></div>
+  <!-- Container para o botão do WhatsApp e balão - ESTRUTURA MODIFICADA -->
+  <div class="whatsapp-wrapper">
+    <div class="whatsapp-container">
+      <div class="speech-bubble">
+        <div class="close-bubble">×</div>
+        Fale Conosco
+      </div>
+      <div class="whatsapp-float">
+        <div class="whatsapp-icon"></div>
+      </div>
     </div>
   </div>
 
@@ -387,6 +442,7 @@
       const whatsappButton = document.querySelector('.whatsapp-float');
       const speechBubble = document.querySelector('.speech-bubble');
       const closeBubble = document.querySelector('.close-bubble');
+      const whatsappWrapper = document.querySelector('.whatsapp-wrapper');
       let bubbleInterval;
       
       // Função para mostrar o balão
@@ -452,14 +508,26 @@
         }, 5000);
       }, 2000);
       
-      // Ajustar posição do balão em caso de redimensionamento da janela
-      window.addEventListener('resize', function() {
-        // Recálculo simples da posição para garantir que fique visível
-        if (speechBubble.classList.contains('show')) {
-          hideBubble();
-          setTimeout(showBubble, 100);
+      // Função para manter o botão visível durante o zoom
+      function adjustWhatsAppPosition() {
+        const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        const viewportHeight = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        
+        // Ajustar posicionamento se necessário
+        if (viewportWidth < 300 || viewportHeight < 300) {
+          whatsappWrapper.style.padding = '5px';
+          whatsappWrapper.style.zIndex = '10000';
+        } else {
+          whatsappWrapper.style.padding = '20px';
         }
-      });
+      }
+      
+      // Ajustar posição inicial
+      adjustWhatsAppPosition();
+      
+      // Ajustar posição em caso de redimensionamento
+      window.addEventListener('resize', adjustWhatsAppPosition);
+      window.addEventListener('scroll', adjustWhatsAppPosition);
     });
   </script>
 </body>
