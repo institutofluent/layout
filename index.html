@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tabela - Topo com texto e botão posicionáveis</title>
+<title>Tabela - Topo com texto e botão independentes</title>
 <style>
   :root{
     --header-bg: #b5aee8;
@@ -17,7 +17,7 @@
     font-family: Arial, Helvetica, sans-serif;
     background:#fff;
     color:#000;
-    position:relative; /* necessário para posicionamento absoluto de filhos */
+    position:relative; /* necessário para posicionamento absoluto */
   }
 
   table{
@@ -88,7 +88,6 @@
     font-weight:bold;
     text-decoration:none;
     border-radius:6px;
-    margin-top:10px;
   }
 
   .download:hover{ background:#354cd4; }
@@ -118,13 +117,15 @@
     </tbody>
   </table>
 
-  <!-- Texto e botão com possibilidade de mover -->
-  <div class="posicionavel" style="top:50px; left:50px;">
-    <div class="texto">
-      Por favor, verifique se as informações acima coincidem com o certificado emitido.<br>
-      Caso estejam corretas, faça o download do documento oficial em PDF abaixo.
-    </div>
-    <a href="Diploma_FTEC_Josenir.pdf" class="download" download>⬇️ Baixar Certificado</a>
+  <!-- Texto independente -->
+  <div class="posicionavel texto" style="top:500px; left:50px;">
+    Por favor, verifique se as informações acima coincidem com o certificado emitido.<br>
+    Caso estejam corretas, faça o download do documento oficial em PDF abaixo.
   </div>
+
+  <!-- Botão independente -->
+  <a href="Diploma_FTEC_Josenir.pdf" class="download posicionavel" style="top:600px; left:100px;" download>
+    ⬇️ Baixar Certificado
+  </a>
 </body>
 </html>
