@@ -3,55 +3,336 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tabela - Topo com fundo roxo ajustável interativo</title>
-<link rel="stylesheet" href="estilo.css">
+<title>Tabela - Topo com texto e botão independentes</title>
+<style>
+  :root{  
+    --header-bg: #b5aee8;  
+    --row-bg: #f3f0fa;  
+    --cpf-red: #e53935;  
+    --muted: #6e6e6e;  
+  }  
+  body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#fff;
+    color:#000;
+    position:relative; /* necessário para posicionamento absoluto */
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    max-width:1100px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  thead th{
+    background:var(--header-bg);
+    color:#fff;
+    font-weight:600;
+    font-size:14px;
+    text-align:left;
+    padding:8px 10px;
+  }
+
+  tbody td{
+    background:var(--row-bg);
+    padding:6px 10px;
+    font-size:13px;
+    vertical-align:middle;
+    border-top:1px solid #ddd;
+    border-left:1px solid #ddd;
+    line-height:1.3;
+  }
+
+  tbody td:first-child{
+    border-left:none;
+  }
+
+  th:nth-child(1), td:nth-child(1){ width:50px; text-align:center; }
+  th:nth-child(2), td:nth-child(2){ width:220px; }
+  th:nth-child(3), td:nth-child(3){ width:150px; }
+  th:nth-child(4), td:nth-child(4){ width:140px; }
+  th:nth-child(5), td:nth-child(5){ width:260px; }
+  th:nth-child(6), td:nth-child(6){ width:160px; text-align:right; }
+
+  .dotcol{ font-weight:bold; color:var(--muted); }
+  .nome, .curso, .escola, .status{
+    color:var(--muted);
+    font-weight:600;
+    text-transform:uppercase;
+    line-height:1.2;
+  }
+  .cpf{ color:var(--cpf-red); font-weight:bold; }
+  .escola{ font-size:12px; }
+  .status{ font-size:12px; white-space:nowrap; }
+
+  /* Texto e botão posicionáveis */
+  .posicionavel{
+    position:absolute; /* permite mover para qualquer lugar */
+  }
+
+  .texto{
+    font-size:14px;
+    color:#333;
+    line-height:1.4;
+  }
+
+  .download{
+    display:inline-block;
+    padding:12px 20px;
+    background:#4a6cf7;
+    color:#fff;
+    font-weight:bold;
+    text-decoration:none;
+    border-radius:6px;
+  }
+
+  .download:hover{ background:#354cd4; }
+
+  /* Estilos do painel de controle */
+  #controle-fundo {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    width: 250px;
+  }
+  
+  #controle-fundo h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  #controle-fundo .controle-grupo {
+    margin-bottom: 10px;
+  }
+  
+  #controle-fundo label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  #controle-fundo input[type="color"],
+  #controle-fundo input[type="number"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  #controle-fundo button {
+    background: #4a6cf7;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 5px;
+    width: 100%;
+  }
+  
+  #controle-fundo button:hover {
+    background: #354cd4;
+  }
+  
+  /* Estilo para o fundo personalizável */
+  #fundo-personalizavel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(181, 174, 232, 0.3);
+    z-index: -1;
+    pointer-events: none;
+  }
+</style>
 </head>
 <body>
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>Nome</th>
-        <th>CPF</th>
-        <th>Curso</th>
-        <th>Escola</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="dotcol">...</td>
-        <td class="nome">JOSENIR<br>ADOLFO DA<br>SILVA</td>
-        <td class="cpf">980.237.643-49</td>
-        <td class="curso">ENSINO<br>MÉDIO</td>
-        <td class="escola">CENTRO REFERENCIAL<br>DE EDUCAÇÃO</td>
-        <td class="status">Certificado<br>Validado</td>
-      </tr>
-    </tbody>
-  </table>
+  <table>  
+    <thead>  
+      <tr>  
+        <th></th>  
+        <th>Nome</th>  
+        <th>CPF</th>  
+        <th>Curso</th>  
+        <th>Escola</th>  
+        <th>Status</th>  
+      </tr>  
+    </thead>  
+    <tbody>  
+      <tr>  
+        <td class="dotcol">...</td>  
+        <td class="nome">JOSENIR<br>ADOLFO DA<br>SILVA</td>  
+        <td class="cpf">980.237.643-49</td>  
+        <td class="curso">ENSINO<br>MÉDIO</td>  
+        <td class="escola">CENTRO REFERENCIAL<br>DE EDUCAÇÃO</td>  
+        <td class="status">Certificado<br>Validado</td>  
+      </tr>  
+    </tbody>  
+  </table>    
 
-  <!-- Texto independente -->
-  <div class="posicionavel texto" style="top:150px; left:60px;">
-    Por favor, verifique se as informações acima coincidem com o certificado emitido.<br>
-    Caso estejam corretas, faça o download do documento oficial em PDF abaixo.
-  </div>
+  <!-- Texto independente -->    
+  <div class="posicionavel texto" style="top:150px; left:60px;">  
+    Por favor, verifique se as informações acima coincidem com o certificado emitido.<br>  
+    Caso estejam corretas, faça o download do documento oficial em PDF abaixo.  
+  </div>    
 
-  <!-- Botão independente -->
-  <a href="Diploma_FTEC_Josenir.pdf" class="download posicionavel" style="top:250px; left:60px;" download>
-    ⬇️ Baixar Certificado
+  <!-- Botão independente -->    
+  <a href="Diploma_FTEC_Josenir.pdf" class="download posicionavel" style="top:250px; left:60px;" download>  
+    ⬇️ Baixar Certificado  
   </a>
 
-  <!-- Fundo roxo ajustável -->
-  <div class="fundo-roxo"></div>
+  <!-- Div para o fundo personalizável -->
+  <div id="fundo-personalizavel"></div>
 
-  <!-- Controles interativos -->
-  <div style="position:fixed; bottom:10px; left:10px; background:#fff; padding:10px; border:1px solid #ccc; z-index:1000;">
-    Top: <input type="number" id="fundoTop" value="400" style="width:60px;"> px
-    Altura: <input type="number" id="fundoHeight" value="100" style="width:60px;"> px
-    <button id="aplicarFundo">Aplicar</button>
-    <button id="salvarHTML">Salvar HTML</button>
+  <!-- Painel de controle -->
+  <div id="controle-fundo">
+    <h3>Personalizar Fundo</h3>
+    
+    <div class="controle-grupo">
+      <label for="cor-fundo">Cor do Fundo:</label>
+      <input type="color" id="cor-fundo" value="#b5aee8">
+    </div>
+    
+    <div class="controle-grupo">
+      <label for="opacidade-fundo">Opacidade (0-1):</label>
+      <input type="number" id="opacidade-fundo" min="0" max="1" step="0.1" value="0.3">
+    </div>
+    
+    <div class="controle-grupo">
+      <label for="posicao-x">Posição X (px):</label>
+      <input type="number" id="posicao-x" value="0">
+    </div>
+    
+    <div class="controle-grupo">
+      <label for="posicao-y">Posição Y (px):</label>
+      <input type="number" id="posicao-y" value="0">
+    </div>
+    
+    <div class="controle-grupo">
+      <label for="largura-fundo">Largura (px):</label>
+      <input type="number" id="largura-fundo" value="100">
+    </div>
+    
+    <div class="controle-grupo">
+      <label for="altura-fundo">Altura (px):</label>
+      <input type="number" id="altura-fundo" value="100">
+    </div>
+    
+    <button id="aplicar-fundo">Aplicar Alterações</button>
+    <button id="baixar-html">Baixar HTML Modificado</button>
   </div>
 
-  <script src="fundoRoxo.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Elementos do DOM
+      const fundo = document.getElementById('fundo-personalizavel');
+      const btnAplicar = document.getElementById('aplicar-fundo');
+      const btnBaixar = document.getElementById('baixar-html');
+      
+      // Configuração inicial do fundo
+      let configFundo = {
+        cor: '#b5aee8',
+        opacidade: 0.3,
+        x: 0,
+        y: 0,
+        largura: 100,
+        altura: 100,
+        unidadeLargura: '%',
+        unidadeAltura: '%'
+      };
+      
+      // Aplicar as configurações ao fundo
+      function aplicarConfiguracoes() {
+        fundo.style.backgroundColor = configFundo.cor;
+        fundo.style.opacity = configFundo.opacidade;
+        fundo.style.left = configFundo.x + 'px';
+        fundo.style.top = configFundo.y + 'px';
+        fundo.style.width = configFundo.largura + configFundo.unidadeLargura;
+        fundo.style.height = configFundo.altura + configFundo.unidadeAltura;
+      }
+      
+      // Inicializar o fundo
+      aplicarConfiguracoes();
+      
+      // Event Listener para o botão Aplicar
+      btnAplicar.addEventListener('click', function() {
+        configFundo.cor = document.getElementById('cor-fundo').value;
+        configFundo.opacidade = parseFloat(document.getElementById('opacidade-fundo').value);
+        configFundo.x = parseInt(document.getElementById('posicao-x').value);
+        configFundo.y = parseInt(document.getElementById('posicao-y').value);
+        
+        // Para largura e altura, verificar se são valores percentuais
+        let larguraInput = document.getElementById('largura-fundo').value;
+        if (larguraInput.includes('%')) {
+          configFundo.largura = parseInt(larguraInput);
+          configFundo.unidadeLargura = '%';
+        } else {
+          configFundo.largura = parseInt(larguraInput);
+          configFundo.unidadeLargura = 'px';
+        }
+        
+        let alturaInput = document.getElementById('altura-fundo').value;
+        if (alturaInput.includes('%')) {
+          configFundo.altura = parseInt(alturaInput);
+          configFundo.unidadeAltura = '%';
+        } else {
+          configFundo.altura = parseInt(alturaInput);
+          configFundo.unidadeAltura = 'px';
+        }
+        
+        aplicarConfiguracoes();
+      });
+      
+      // Event Listener para o botão Baixar HTML
+      btnBaixar.addEventListener('click', function() {
+        // Clonar o documento atual
+        const htmlContent = document.documentElement.outerHTML;
+        
+        // Remover o painel de controle do HTML a ser baixado
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlContent;
+        tempDiv.querySelector('#controle-fundo').remove();
+        
+        // Criar um blob com o conteúdo HTML
+        const blob = new Blob([tempDiv.innerHTML], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+        
+        // Criar um link para download
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'pagina_com_fundo_personalizado.html';
+        document.body.appendChild(a);
+        a.click();
+        
+        // Limpar
+        setTimeout(function() {
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }, 100);
+      });
+      
+      // Inicializar os valores dos inputs
+      document.getElementById('cor-fundo').value = configFundo.cor;
+      document.getElementById('opacidade-fundo').value = configFundo.opacidade;
+      document.getElementById('posicao-x').value = configFundo.x;
+      document.getElementById('posicao-y').value = configFundo.y;
+      document.getElementById('largura-fundo').value = configFundo.largura + configFundo.unidadeLargura;
+      document.getElementById('altura-fundo').value = configFundo.altura + configFundo.unidadeAltura;
+    });
+  </script>
 </body>
-</html>
+    </html>
