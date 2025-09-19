@@ -7,21 +7,23 @@
 <style>
   :root{
     --header-bg: #b5aee8;    /* cabeçalho roxo */
+    --row-bg: #f3f0fa;       /* fundo das informações: roxo quase branco */
     --cpf-red: #e53935;      /* cor do CPF */
-    --text: #222222;
-    --muted: #6e6e6e;
+    --muted: #6e6e6e;        /* cor do texto secundário */
   }
 
   body{
     margin:0;
     font-family: Arial, Helvetica, sans-serif;
     background:#fff;
-    color:var(--text);
+    color:#000;
   }
 
   table{
     width:100%;
     border-collapse:collapse;
+    margin:40px auto;      /* margem em volta */
+    max-width:1100px;      /* largura máxima */
   }
 
   thead th{
@@ -34,14 +36,14 @@
   }
 
   tbody td{
-    background:#fff;
+    background:var(--row-bg);   /* fundo roxo quase branco */
     padding:12px;
     font-size:14px;
     vertical-align:top;
     border-top:1px solid #ddd;
   }
 
-  /* colunas mais soltas */
+  /* colunas */
   th:nth-child(1), td:nth-child(1){ width:50px; text-align:center; }
   th:nth-child(2), td:nth-child(2){ width:220px; }
   th:nth-child(3), td:nth-child(3){ width:150px; }
@@ -54,8 +56,9 @@
     color:var(--muted);
   }
 
-  .nome{
-    font-weight:700;
+  .nome, .curso, .escola, .status{
+    color:var(--muted);
+    font-weight:600;
     text-transform:uppercase;
     line-height:1.2;
   }
@@ -65,25 +68,12 @@
     font-weight:bold;
   }
 
-  .curso{
-    text-transform:uppercase;
-    font-weight:600;
-  }
-
   .escola{
-    text-transform:uppercase;
-    font-weight:600;
-    color:var(--muted);
     font-size:13px;
-    line-height:1.2;
   }
 
   .status{
-    text-align:right;
-    color:var(--muted);
-    font-weight:600;
     font-size:13px;
-    line-height:1.2;
     white-space:nowrap;
   }
 </style>
