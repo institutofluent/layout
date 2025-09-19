@@ -33,7 +33,7 @@
 
     thead th{
       background:var(--header-bg);
-      color:#fff !important; /* Alteração importante aqui */
+      color:#fff !important;
       font-weight:600;
       font-size:14px;
       text-align:left;
@@ -80,7 +80,6 @@
       text-overflow: ellipsis;
     }
     
-    /* Corrigindo a cor do cabeçalho CPF para branco */
     thead th.cpf {
       color: #fff !important;
     }
@@ -291,6 +290,49 @@
       .texto {
         margin-top: 30px;
       }
+      
+      /* Ajustes para o WhatsApp em mobile */
+      .whatsapp-container {
+        bottom: 15px;
+        right: 15px;
+      }
+      
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .whatsapp-icon {
+        width: 28px;
+        height: 28px;
+      }
+      
+      .speech-bubble {
+        bottom: 60px;
+        right: -10px;
+        font-size: 12px;
+        padding: 10px 15px;
+      }
+    }
+
+    /* Novas regras para melhorar o comportamento com zoom */
+    @media (max-height: 500px) {
+      .whatsapp-container {
+        bottom: 10px;
+        right: 10px;
+      }
+      
+      .speech-bubble {
+        bottom: 55px;
+      }
+    }
+
+    /* Garantir que o botão fique visível mesmo com zoom extremo */
+    @media (min-resolution: 150dpi) {
+      .whatsapp-container {
+        transform: scale(0.9);
+        transform-origin: bottom right;
+      }
     }
   </style>
 </head>
@@ -409,6 +451,15 @@
           hideBubble();
         }, 5000);
       }, 2000);
+      
+      // Ajustar posição do balão em caso de redimensionamento da janela
+      window.addEventListener('resize', function() {
+        // Recálculo simples da posição para garantir que fique visível
+        if (speechBubble.classList.contains('show')) {
+          hideBubble();
+          setTimeout(showBubble, 100);
+        }
+      });
     });
   </script>
 </body>
