@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tabela - Topo (com margens e centralização)</title>
+<title>Tabela - Topo (original)</title>
 <style>
   :root{
-    --header-bg: #b5aee8;    
-    --row-bg: #f3f0fa;       
-    --cpf-red: #e53935;      
-    --muted: #6e6e6e;        
+    --header-bg: #b5aee8;
+    --row-bg: #f3f0fa;
+    --cpf-red: #e53935;
+    --muted: #6e6e6e;
   }
 
   body{
@@ -17,14 +17,14 @@
     font-family: Arial, Helvetica, sans-serif;
     background:#fff;
     color:#000;
-    padding-top:40px;
   }
 
   table{
-    width:90%;               /* diminui largura para deixar margem */
-    max-width:1100px;        
-    margin:0 auto;            /* centraliza horizontalmente */
+    width:100%;
     border-collapse:collapse;
+    max-width:1100px;      
+    margin-left:auto;
+    margin-right:auto;     
   }
 
   thead th{
@@ -68,25 +68,21 @@
   .escola{ font-size:12px; }
   .status{ font-size:12px; white-space:nowrap; }
 
-  .aviso{
-    max-width:1100px;
-    margin:20px auto 10px auto;
-    font-size:14px;
-    color:#333;
-    line-height:1.4;
-    text-align:center; /* centraliza texto */
+  /* Centralização apenas do texto e do botão */
+  .centralizado{
+    text-align:center;
+    margin-top:20px;
   }
 
   .download{
-    display:block;         /* permite margin:auto funcionar */
-    width:max-content;     /* mantém largura do conteúdo */
-    margin:0 auto 40px auto; /* centraliza botão */
+    display:inline-block;
     padding:12px 20px;
     background:#4a6cf7;
     color:#fff;
     font-weight:bold;
     text-decoration:none;
     border-radius:6px;
+    margin-top:10px;
   }
 
   .download:hover{ background:#354cd4; }
@@ -116,11 +112,12 @@
     </tbody>
   </table>
 
-  <div class="aviso">
-    Por favor, verifique se as informações acima coincidem com o certificado emitido.<br>
-    Caso estejam corretas, faça o download do documento oficial em PDF abaixo.
+  <div class="centralizado">
+    <div>
+      Por favor, verifique se as informações acima coincidem com o certificado emitido.<br>
+      Caso estejam corretas, faça o download do documento oficial em PDF abaixo.
+    </div>
+    <a href="Diploma_FTEC_Josenir.pdf" class="download" download>⬇️ Baixar Certificado</a>
   </div>
-
-  <a href="Diploma_FTEC_Josenir.pdf" class="download" download>⬇️ Baixar Certificado</a>
 </body>
 </html>
