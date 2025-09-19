@@ -33,20 +33,21 @@
     font-weight:600;
     font-size:14px;
     text-align:left;
-    padding:10px 12px;
+    padding:8px 10px;   /* menor altura no cabeçalho */
   }
 
   tbody td{
-    background:var(--row-bg);   /* fundo roxo quase branco */
-    padding:12px;
-    font-size:14px;
-    vertical-align:top;
-    border-top:1px solid #ddd;      /* linha superior */
-    border-left:1px solid #ddd;     /* linha entre colunas */
+    background:var(--row-bg);
+    padding:6px 10px;   /* reduzido para compactar */
+    font-size:13px;     /* texto menor */
+    vertical-align:middle;
+    border-top:1px solid #ddd;
+    border-left:1px solid #ddd;
+    line-height:1.3;    /* altura de linha mais curta */
   }
 
   tbody td:first-child{
-    border-left:none;  /* remove borda da 1ª célula */
+    border-left:none;
   }
 
   /* colunas */
@@ -75,11 +76,11 @@
   }
 
   .escola{
-    font-size:13px;
+    font-size:12px;
   }
 
   .status{
-    font-size:13px;
+    font-size:12px;
     white-space:nowrap;
   }
 </style>
