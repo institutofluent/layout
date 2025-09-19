@@ -17,7 +17,7 @@
     font-family: Arial, Helvetica, sans-serif;
     background:#fff;
     color:#000;
-    position:relative; /* necessário para posicionamento absoluto */
+    position:relative;
   }
 
   table{
@@ -71,7 +71,7 @@
 
   /* Texto e botão posicionáveis */
   .posicionavel{
-    position:absolute; /* permite mover para qualquer lugar */
+    position:absolute;
   }
 
   .texto{
@@ -92,15 +92,15 @@
 
   .download:hover{ background:#354cd4; }
 
-  /* Fundo roxo ajustável */
+  /* Fundo roxo totalmente ajustável */
   .fundo-roxo{
     position:absolute;
+    top:400px;      /* ajuste vertical */
     left:0;
-    right:0;
-    top:400px;   /* ajuste vertical */
-    height:100px; /* ajuste de altura */
-    background:#b5aee8; /* cor do fundo */
-    z-index:-1; /* para não sobrepor o texto e botão */
+    width:100vw;    /* largura total da viewport, garante full-width no mobile */
+    height:100px;   /* ajuste de altura */
+    background:#b5aee8;
+    z-index:-1;
   }
 </style>
 </head>
