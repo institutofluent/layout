@@ -1,142 +1,123 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabela - Layout Corrigido com Margens</title>
-    <style>
-        :root {
-            --header-bg: #b5aee8;
-            --cpf-red: #e53935;
-            --text: #222222;
-            --muted: #6e6e6e;
-        }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tabela - Topo (com margens corrigido)</title>
+<style>
+  :root{
+    --header-bg: #b5aee8;    
+    --cpf-red: #e53935;      
+    --text: #222222;
+    --muted: #6e6e6e;
+  }
 
-        body {
-            margin: 0;
-            padding: 20px; /* Adicionando padding em vez de margin */
-            font-family: Arial, Helvetica, sans-serif;
-            background: #fff;
-            color: var(--text);
-            box-sizing: border-box;
-        }
+  body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#fff;
+    color:var(--text);
+    padding-top:40px; /* só espaço em cima */
+  }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+  .table-container{
+    width: 90%;          /* ocupa 90% da largura da página */
+    max-width: 1000px;   /* limite máximo */
+    margin: 0 auto;      /* centraliza horizontalmente */
+  }
 
-        thead th {
-            background: var(--header-bg);
-            color: #fff;
-            font-weight: 600;
-            font-size: 14px;
-            text-align: left;
-            padding: 10px 12px;
-        }
+  table{
+    width:100%;
+    border-collapse:collapse;
+  }
 
-        tbody td {
-            background: #fff;
-            padding: 12px;
-            font-size: 14px;
-            vertical-align: top;
-            border-top: 1px solid #ddd;
-        }
+  thead th{
+    background:var(--header-bg);
+    color:#fff;
+    font-weight:600;
+    font-size:14px;
+    text-align:left;
+    padding:10px 12px;
+  }
 
-        /* colunas mais soltas */
-        th:nth-child(1),
-        td:nth-child(1) {
-            width: 50px;
-            text-align: center;
-        }
+  tbody td{
+    background:#fff;
+    padding:12px;
+    font-size:14px;
+    vertical-align:top;
+    border-top:1px solid #ddd;
+  }
 
-        th:nth-child(2),
-        td:nth-child(2) {
-            width: 220px;
-        }
+  th:nth-child(1), td:nth-child(1){ width:50px; text-align:center; }
+  th:nth-child(2), td:nth-child(2){ width:220px; }
+  th:nth-child(3), td:nth-child(3){ width:150px; }
+  th:nth-child(4), td:nth-child(4){ width:140px; }
+  th:nth-child(5), td:nth-child(5){ width:260px; }
+  th:nth-child(6), td:nth-child(6){ width:160px; text-align:right; }
 
-        th:nth-child(3),
-        td:nth-child(3) {
-            width: 150px;
-        }
+  .dotcol{
+    font-weight:bold;
+    color:var(--muted);
+  }
 
-        th:nth-child(4),
-        td:nth-child(4) {
-            width: 140px;
-        }
+  .nome{
+    font-weight:700;
+    text-transform:uppercase;
+    line-height:1.2;
+  }
 
-        th:nth-child(5),
-        td:nth-child(5) {
-            width: 260px;
-        }
+  .cpf{
+    color:var(--cpf-red);
+    font-weight:bold;
+  }
 
-        th:nth-child(6),
-        td:nth-child(6) {
-            width: 160px;
-            text-align: right;
-        }
+  .curso{
+    text-transform:uppercase;
+    font-weight:600;
+  }
 
-        .dotcol {
-            font-weight: bold;
-            color: var(--muted);
-        }
+  .escola{
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.2;
+  }
 
-        .nome {
-            font-weight: 700;
-            text-transform: uppercase;
-            line-height: 1.2;
-        }
-
-        .cpf {
-            color: var(--cpf-red);
-            font-weight: bold;
-        }
-
-        .curso {
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-
-        .escola {
-            text-transform: uppercase;
-            font-weight: 600;
-            color: var(--muted);
-            font-size: 13px;
-            line-height: 1.2;
-        }
-
-        .status {
-            text-align: right;
-            color: var(--muted);
-            font-weight: 600;
-            font-size: 13px;
-            line-height: 1.2;
-            white-space: nowrap;
-        }
-    </style>
+  .status{
+    text-align:right;
+    color:var(--muted);
+    font-weight:600;
+    font-size:13px;
+    line-height:1.2;
+    white-space:nowrap;
+  }
+</style>
 </head>
 <body>
+  <div class="table-container">
     <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th>Nome</th>
-                <th>CPF</th>
-                <th>Curso</th>
-                <th>Escola</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="dotcol">...</td>
-                <td class="nome">JOSENIR<br>ADOLFO DA<br>SILVA</td>
-                <td class="cpf">980.237.643-49</td>
-                <td class="curso">ENSINO<br>MÉDIO</td>
-                <td class="escola">CENTRO REFERENCIAL<br>DE EDUCAÇÃO</td>
-                <td class="status">Certificado<br>Validado</td>
-            </tr>
-        </tbody>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Curso</th>
+          <th>Escola</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="dotcol">...</td>
+          <td class="nome">JOSENIR<br>ADOLFO DA<br>SILVA</td>
+          <td class="cpf">980.237.643-49</td>
+          <td class="curso">ENSINO<br>MÉDIO</td>
+          <td class="escola">CENTRO REFERENCIAL<br>DE EDUCAÇÃO</td>
+          <td class="status">Certificado<br>Validado</td>
+        </tr>
+      </tbody>
     </table>
+  </div>
 </body>
 </html>
