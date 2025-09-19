@@ -20,8 +20,6 @@
       position:relative;
       min-height: 100vh;
       overflow-x: auto;
-      display: flex;
-      flex-direction: column;
     }
 
     table{
@@ -108,61 +106,32 @@
       min-width: 160px;
     }
 
-    /* CONTAINER PRINCIPAL FLEX */
-    .main-container {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    /* CONTAINER DA TABELA */
-    .table-container {
-      flex: 0 0 auto;
-      padding: 20px 0;
-    }
-
-    /* CONTAINER CENTRALIZADO NO MEIO DA PÁGINA */
-    .center-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      flex: 1;
-      text-align: center;
-      padding: 40px 20px;
+    .posicionavel{
+      position:absolute;
     }
 
     .texto{
-      font-size:18px;
+      font-size:14px;
       color:#333;
-      line-height:1.6;
-      margin-bottom: 30px;
-      max-width: 600px;
+      line-height:1.4;
     }
 
     .download{
       display:inline-block;
-      padding:16px 32px;
+      padding:12px 20px;
       background:#4a6cf7;
       color:#fff;
       font-weight:bold;
       text-decoration:none;
-      border-radius:8px;
-      font-size:18px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(74, 108, 247, 0.3);
+      border-radius:6px;
     }
 
-    .download:hover{ 
-      background:#354cd4; 
-      transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(74, 108, 247, 0.4);
-    }
+    .download:hover{ background:#354cd4; }
 
     #fundo-personalizavel {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 350px;
+      left: 0px;
       width: 100%;
       height: 100%;
       background-color: #a99ef7;
@@ -171,7 +140,7 @@
       pointer-events: none;
     }
 
-    /* BOTÃO DO WHATSAPP */
+    /* BOTÃO DO WHATSAPP AUMENTADO */
     .whatsapp-container {
       position: fixed;
       bottom: 20px;
@@ -180,8 +149,8 @@
     }
 
     .whatsapp-float {
-      width: 80px;
-      height: 80px;
+      width: 80px; /* Aumentado de 60px para 80px */
+      height: 80px; /* Aumentado de 60px para 80px */
       background-color: var(--whatsapp-green);
       border-radius: 50%;
       display: flex;
@@ -199,8 +168,8 @@
     }
 
     .whatsapp-icon {
-      width: 45px;
-      height: 45px;
+      width: 45px; /* Aumentado de 35px para 45px */
+      height: 45px; /* Aumentado de 35px para 45px */
       background: white;
       border-radius: 50%;
       display: flex;
@@ -211,14 +180,14 @@
 
     .whatsapp-icon::before {
       content: "";
-      width: 30px;
-      height: 30px;
+      width: 30px; /* Aumentado de 25px para 30px */
+      height: 30px; /* Aumentado de 25px para 30px */
       background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%2325d366' d='M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z'/%3E%3C/svg%3E") center/contain no-repeat;
     }
 
     .speech-bubble {
       position: absolute;
-      bottom: 90px;
+      bottom: 90px; /* Ajustado para acompanhar o botão maior */
       right: 0;
       background: white;
       border-radius: 20px;
@@ -240,7 +209,7 @@
       content: '';
       position: absolute;
       bottom: -10px;
-      right: 30px;
+      right: 30px; /* Ajustado para centralizar com o botão maior */
       width: 0;
       height: 0;
       border-left: 10px solid transparent;
@@ -312,19 +281,13 @@
         width: 110px;
       }
       
-      /* Ajustes para o container centralizado em mobile */
-      .center-container {
-        padding: 20px 15px;
+      .posicionavel {
+        position: static;
+        margin: 20px;
       }
       
       .texto {
-        font-size: 16px;
-        margin-bottom: 20px;
-      }
-      
-      .download {
-        padding: 14px 25px;
-        font-size: 16px;
+        margin-top: 30px;
       }
       
       /* Ajustes para o WhatsApp em mobile */
@@ -334,62 +297,72 @@
       }
       
       .whatsapp-float {
-        width: 70px;
-        height: 70px;
+        width: 70px; /* Aumentado proporcionalmente para mobile */
+        height: 70px; /* Aumentado proporcionalmente para mobile */
       }
       
       .whatsapp-icon {
-        width: 40px;
-        height: 40px;
+        width: 40px; /* Aumentado proporcionalmente para mobile */
+        height: 40px; /* Aumentado proporcionalmente para mobile */
       }
       
       .speech-bubble {
-        bottom: 80px;
+        bottom: 80px; /* Ajustado para mobile */
         right: -10px;
         font-size: 12px;
         padding: 10px 15px;
       }
     }
+
+    /* ADMISSÃO DA LIMITAÇÃO */
+    .limitation-notice {
+      position: fixed;
+      bottom: 110px;
+      right: 20px;
+      background: #ffebee;
+      color: #c62828;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 12px;
+      max-width: 250px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 10001;
+      display: none; /* Oculto por padrão */
+    }
   </style>
 </head>
 <body>
-  <div class="main-container">
-    <div class="table-container">
-      <table>  
-        <thead>  
-          <tr>  
-            <th class="dotcol"></th>  
-            <th class="nome">Nome</th>  
-            <th class="cpf">CPF</th>  
-            <th class="curso">Curso</th>  
-            <th class="escola">Escola</th>  
-            <th class="status">Status</th>  
-          </tr>  
-        </thead>  
-        <tbody>  
-          <tr>  
-            <td class="dotcol">...</td>  
-            <td class="nome">ANA CÉLIA PEREIRA DA SILVA</td>  
-            <td class="cpf">802.846.473-49</td>  
-            <td class="curso">ENSINO MÉDIO</td>  
-            <td class="escola">CENTRO REFERENCIAL DE EDUCAÇÃO</td>  
-            <td class="status">Certificado Validado</td>  
-          </tr>  
-        </tbody>  
-      </table>
-    </div>
+  <table>  
+    <thead>  
+      <tr>  
+        <th class="dotcol"></th>  
+        <th class="nome">Nome</th>  
+        <th class="cpf">CPF</th>  
+        <th class="curso">Curso</th>  
+        <th class="escola">Escola</th>  
+        <th class="status">Status</th>  
+      </tr>  
+    </thead>  
+    <tbody>  
+      <tr>  
+        <td class="dotcol">...</td>  
+        <td class="nome">ANA CÉLIA PEREIRA DA SILVA</td>  
+        <td class="cpf">802.846.473-49</td>  
+        <td class="curso">ENSINO MÉDIO</td>  
+        <td class="escola">CENTRO REFERENCIAL DE EDUCAÇÃO</td>  
+        <td class="status">Certificado Validado</td>  
+      </tr>  
+    </tbody>  
+  </table>    
 
-    <div class="center-container">
-      <div class="texto">  
-        Por favor, verifique se as informações acima coincidem com o certificado emitido.<br>  
-        Caso estejam corretas, faça o download do documento oficial em PDF abaixo.  
-      </div>    
+  <div class="posicionavel texto" style="top:150px; left:60px;">  
+    Por favor, verifique se as informações acima coincidem com o certificado emitido.<br>  
+    Caso estejam corretas, faça o download do documento oficial em PDF abaixo.  
+  </div>    
 
-      <a href="certificado.pdf" class="download" download>  
-        ⬇️ Confira  
-      </a>
-    </div>
-  </div>
+  <a href="certificado.pdf" class="download posicionavel" style="top:250px; left:60px;" download>  
+    ⬇️ Confira  
+  </a>
 
   <div id="fundo-personalizavel"></div>
   
@@ -404,11 +377,14 @@
     </div>
   </div>
 
+  </div>
+
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const whatsappButton = document.querySelector('.whatsapp-float');
       const speechBubble = document.querySelector('.speech-bubble');
       const closeBubble = document.querySelector('.close-bubble');
+      const limitationNotice = document.querySelector('.limitation-notice');
       let bubbleInterval;
       
       // Função para mostrar o balão
@@ -473,6 +449,15 @@
           hideBubble();
         }, 5000);
       }, 2000);
+      
+      // Mostrar a notificação de limitação por alguns segundos ao carregar a página
+      setTimeout(function() {
+        limitationNotice.style.display = 'block';
+        
+        setTimeout(function() {
+          limitationNotice.style.display = 'none';
+        }, 8000);
+      }, 3000);
     });
   </script>
 </body>
