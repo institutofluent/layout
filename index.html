@@ -172,15 +172,17 @@
       text-align: center;
     }
 
+    /* CORREÇÃO DO TRIÂNGULO TORTO */
     .speech-bubble:after {
       content: '';
       position: absolute;
       bottom: -10px;
       right: 20px;
-      border-width: 10px 10px 0;
-      border-style: solid;
-      border-color: white transparent;
-      transform: rotate(20deg);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid white;
     }
 
     .speech-bubble.show {
