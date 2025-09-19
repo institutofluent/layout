@@ -33,7 +33,7 @@
 
     thead th{
       background:var(--header-bg);
-      color:#fff; /* Já está branco, mantido */
+      color:#fff !important; /* Alteração importante aqui */
       font-weight:600;
       font-size:14px;
       text-align:left;
@@ -75,9 +75,14 @@
       color:var(--cpf-red); 
       font-weight:bold; 
       width: 150px;
-      white-space: nowrap; /* Impede quebra de linha do CPF */
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+    
+    /* Corrigindo a cor do cabeçalho CPF para branco */
+    thead th.cpf {
+      color: #fff !important;
     }
     
     .escola{ 
@@ -271,7 +276,7 @@
       
       .cpf {
         width: 120px;
-        white-space: nowrap; /* Mantém o nowrap mesmo no mobile */
+        white-space: nowrap;
       }
       
       .status {
