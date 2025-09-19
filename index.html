@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tabela - Topo com texto e botão independentes</title>
+<title>Tabela - Topo com texto, botão e fundo roxo posicionáveis</title>
 <style>
   :root{
     --header-bg: #b5aee8;
@@ -69,7 +69,7 @@
   .escola{ font-size:12px; }
   .status{ font-size:12px; white-space:nowrap; }
 
-  /* Texto e botão posicionáveis */
+  /* Texto, botão e fundo posicionáveis */
   .posicionavel{
     position:absolute; /* permite mover para qualquer lugar */
   }
@@ -127,5 +127,9 @@
   <a href="Diploma_FTEC_Josenir.pdf" class="download posicionavel" style="top:250px; left:60px;" download>
     ⬇️ Baixar Certificado
   </a>
+
+  <!-- Fundo roxo totalmente ajustável -->
+  <div class="posicionavel" style="top:400px; left:0; width:100%; height:100px; background:#b5aee8; margin:0;">
+  </div>
 </body>
 </html>
