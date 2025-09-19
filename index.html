@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tabela - Topo (com margens corrigido)</title>
+<title>Tabela - Topo (idêntico)</title>
 <style>
   :root{
-    --header-bg: #b5aee8;    
-    --cpf-red: #e53935;      
+    --header-bg: #b5aee8;    /* cabeçalho roxo */
+    --cpf-red: #e53935;      /* cor do CPF */
     --text: #222222;
     --muted: #6e6e6e;
   }
@@ -17,13 +17,13 @@
     font-family: Arial, Helvetica, sans-serif;
     background:#fff;
     color:var(--text);
-    padding-top:40px; /* só espaço em cima */
   }
 
-  .table-container{
-    width: 90%;          /* ocupa 90% da largura da página */
-    max-width: 1000px;   /* limite máximo */
-    margin: 0 auto;      /* centraliza horizontalmente */
+  /* container com margem */
+  .container{
+    max-width: 1100px;   /* limite para não esticar demais */
+    margin:40px auto;    /* margem no topo e laterais */
+    padding:0 20px;      /* respiro interno lateral */
   }
 
   table{
@@ -48,6 +48,7 @@
     border-top:1px solid #ddd;
   }
 
+  /* colunas mais soltas */
   th:nth-child(1), td:nth-child(1){ width:50px; text-align:center; }
   th:nth-child(2), td:nth-child(2){ width:220px; }
   th:nth-child(3), td:nth-child(3){ width:150px; }
@@ -95,7 +96,7 @@
 </style>
 </head>
 <body>
-  <div class="table-container">
+  <div class="container">
     <table>
       <thead>
         <tr>
