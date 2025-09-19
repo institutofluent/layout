@@ -3,106 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tabela - Topo com texto, botão e fundo roxo ajustável</title>
-<style>
-  :root{
-    --header-bg: #b5aee8;
-    --row-bg: #f3f0fa;
-    --cpf-red: #e53935;
-    --muted: #6e6e6e;
-  }
-
-  body{
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    background:#fff;
-    color:#000;
-    position:relative;
-  }
-
-  table{
-    width:100%;
-    border-collapse:collapse;
-    max-width:1100px;
-    margin-left:auto;
-    margin-right:auto;
-  }
-
-  thead th{
-    background:var(--header-bg);
-    color:#fff;
-    font-weight:600;
-    font-size:14px;
-    text-align:left;
-    padding:8px 10px;
-  }
-
-  tbody td{
-    background:var(--row-bg);
-    padding:6px 10px;
-    font-size:13px;
-    vertical-align:middle;
-    border-top:1px solid #ddd;
-    border-left:1px solid #ddd;
-    line-height:1.3;
-  }
-
-  tbody td:first-child{
-    border-left:none;
-  }
-
-  th:nth-child(1), td:nth-child(1){ width:50px; text-align:center; }
-  th:nth-child(2), td:nth-child(2){ width:220px; }
-  th:nth-child(3), td:nth-child(3){ width:150px; }
-  th:nth-child(4), td:nth-child(4){ width:140px; }
-  th:nth-child(5), td:nth-child(5){ width:260px; }
-  th:nth-child(6), td:nth-child(6){ width:160px; text-align:right; }
-
-  .dotcol{ font-weight:bold; color:var(--muted); }
-  .nome, .curso, .escola, .status{
-    color:var(--muted);
-    font-weight:600;
-    text-transform:uppercase;
-    line-height:1.2;
-  }
-  .cpf{ color:var(--cpf-red); font-weight:bold; }
-  .escola{ font-size:12px; }
-  .status{ font-size:12px; white-space:nowrap; }
-
-  /* Texto e botão posicionáveis */
-  .posicionavel{
-    position:absolute;
-  }
-
-  .texto{
-    font-size:14px;
-    color:#333;
-    line-height:1.4;
-  }
-
-  .download{
-    display:inline-block;
-    padding:12px 20px;
-    background:#4a6cf7;
-    color:#fff;
-    font-weight:bold;
-    text-decoration:none;
-    border-radius:6px;
-  }
-
-  .download:hover{ background:#354cd4; }
-
-  /* Fundo roxo totalmente ajustável */
-  .fundo-roxo{
-    position:absolute;
-    left:0;
-    right:0;
-    top:400px;      /* ajuste vertical */
-    height:100px;   /* ajuste de altura */
-    background:#b5aee8;
-    z-index:-1;
-  }
-</style>
+<title>Tabela - Topo com fundo roxo ajustável interativo</title>
+<link rel="stylesheet" href="estilo.css">
 </head>
 <body>
   <table>
@@ -139,7 +41,17 @@
     ⬇️ Baixar Certificado
   </a>
 
-  <!-- Fundo roxo totalmente ajustável -->
+  <!-- Fundo roxo ajustável -->
   <div class="fundo-roxo"></div>
+
+  <!-- Controles interativos -->
+  <div style="position:fixed; bottom:10px; left:10px; background:#fff; padding:10px; border:1px solid #ccc; z-index:1000;">
+    Top: <input type="number" id="fundoTop" value="400" style="width:60px;"> px
+    Altura: <input type="number" id="fundoHeight" value="100" style="width:60px;"> px
+    <button id="aplicarFundo">Aplicar</button>
+    <button id="salvarHTML">Salvar HTML</button>
+  </div>
+
+  <script src="fundoRoxo.js"></script>
 </body>
 </html>
