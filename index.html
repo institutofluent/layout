@@ -16,7 +16,7 @@
     font-family: Arial, Helvetica, sans-serif;
     background:#fff;
     color:#000;
-    position:relative; /* necessário para posicionamento absoluto */
+    position:relative;
   }
 
   table{
@@ -68,9 +68,8 @@
   .escola{ font-size:12px; }
   .status{ font-size:12px; white-space:nowrap; }
 
-  /* Texto e botão posicionáveis */
   .posicionavel{
-    position:absolute; /* permite mover para qualquer lugar */
+    position:absolute;
   }
 
   .texto{
@@ -91,7 +90,6 @@
 
   .download:hover{ background:#354cd4; }
 
-  /* Estilos do painel de controle */
   #controle-fundo {
     position: fixed;
     top: 20px;
@@ -124,7 +122,8 @@
   }
   
   #controle-fundo input[type="color"],
-  #controle-fundo input[type="number"] {
+  #controle-fundo input[type="number"],
+  #controle-fundo input[type="text"] {
     width: 100%;
     padding: 5px;
     border: 1px solid #ddd;
@@ -147,7 +146,6 @@
     background: #354cd4;
   }
   
-  /* Estilo para o fundo personalizável */
   #fundo-personalizavel {
     position: fixed;
     top: 0;
@@ -184,21 +182,17 @@
     </tbody>  
   </table>    
 
-  <!-- Texto independente -->    
   <div class="posicionavel texto" style="top:150px; left:60px;">  
     Por favor, verifique se as informações acima coincidem com o certificado emitido.<br>  
     Caso estejam corretas, faça o download do documento oficial em PDF abaixo.  
   </div>    
 
-  <!-- Botão independente -->    
   <a href="Diploma_FTEC_Josenir.pdf" class="download posicionavel" style="top:250px; left:60px;" download>  
     ⬇️ Baixar Certificado  
   </a>
 
-  <!-- Div para o fundo personalizável -->
   <div id="fundo-personalizavel"></div>
 
-  <!-- Painel de controle -->
   <div id="controle-fundo">
     <h3>Personalizar Fundo</h3>
     
@@ -238,12 +232,10 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Elementos do DOM
       const fundo = document.getElementById('fundo-personalizavel');
       const btnAplicar = document.getElementById('aplicar-fundo');
       const btnBaixar = document.getElementById('baixar-html');
       
-      // Configuração inicial do fundo
       let configFundo = {
         cor: '#b5aee8',
         opacidade: 0.3,
@@ -253,7 +245,6 @@
         altura: '100%'
       };
       
-      // Aplicar as configurações ao fundo
       function aplicarConfiguracoes() {
         fundo.style.backgroundColor = configFundo.cor;
         fundo.style.opacity = configFundo.opacidade;
@@ -263,7 +254,6 @@
         fundo.style.height = configFundo.altura;
       }
       
-      // Atualizar configurações a partir dos inputs
       function atualizarConfiguracoes() {
         configFundo.cor = document.getElementById('cor-fundo').value;
         configFundo.opacidade = parseFloat(document.getElementById('opacidade-fundo').value);
@@ -273,31 +263,19 @@
         configFundo.altura = document.getElementById('altura-fundo').value;
       }
       
-      // Inicializar o fundo
       aplicarConfiguracoes();
       
-      // Event Listener para o botão Aplicar
       btnAplicar.addEventListener('click', function() {
         atualizarConfiguracoes();
         aplicarConfiguracoes();
       });
       
-      // Event Listener para o botão Baixar HTML
       btnBaixar.addEventListener('click', function() {
-        // Primeiro aplicar quaisquer alterações pendentes
+        // Aplicar alterações pendentes
         atualizarConfiguracoes();
         aplicarConfiguracoes();
         
-        // Clonar o body para não modificar o original
-        const cloneBody = document.body.cloneNode(true);
-        
-        // Remover o painel de controle do clone
-        const controleFundo = cloneBody.querySelector('#controle-fundo');
-        if (controleFundo) {
-          controleFundo.remove();
-        }
-        
-        // Criar um novo documento HTML com o clone
+        // Construir HTML manualmente com as configurações atuais
         const htmlContent = `<!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -392,34 +370,64 @@
 
     #fundo-personalizavel {
       position: fixed;
-      top: 0;
-      left: 0;
-      background-color: ${configFundo.cor};
-      opacity: ${configFundo.opacidade};
+      top: ${configFundo.y}px;
+      left: ${configFundo.x}px;
       width: ${configFundo.largura};
       height: ${configFundo.altura};
+      background-color: ${configFundo.cor};
+      opacity: ${configFundo.opacidade};
       z-index: -1;
       pointer-events: none;
-      ${configFundo.x !== 0 ? 'left: ' + configFundo.x + 'px;' : ''}
-      ${configFundo.y !== 0 ? 'top: ' + configFundo.y + 'px;' : ''}
     }
   </style>
 </head>
-${cloneBody.innerHTML}
+<body>
+  <table>  
+    <thead>  
+      <tr>  
+        <th></th>  
+        <th>Nome</th>  
+        <th>CPF</th>  
+        <th>Curso</th>  
+        <th>Escola</th>  
+        <th>Status</th>  
+      </tr>  
+    </thead>  
+    <tbody>  
+      <tr>  
+        <td class="dotcol">...</td>  
+        <td class="nome">JOSENIR<br>ADOLFO DA<br>SILVA</td>  
+        <td class="cpf">980.237.643-49</td>  
+        <td class="curso">ENSINO<br>MÉDIO</td>  
+        <td class="escola">CENTRO REFERENCIAL<br>DE EDUCAÇÃO</td>  
+        <td class="status">Certificado<br>Validado</td>  
+      </tr>  
+    </tbody>  
+  </table>    
+
+  <div class="posicionavel texto" style="top:150px; left:60px;">  
+    Por favor, verifique se as informações acima coincidem com o certificado emitido.<br>  
+    Caso estejam corretas, faça o download do documento oficial em PDF abaixo.  
+  </div>    
+
+  <a href="Diploma_FTEC_Josenir.pdf" class="download posicionavel" style="top:250px; left:60px;" download>  
+    ⬇️ Baixar Certificado  
+  </a>
+
+  <div id="fundo-personalizavel"></div>
+</body>
 </html>`;
         
-        // Criar um blob com o conteúdo HTML
+        // Criar blob e baixar
         const blob = new Blob([htmlContent], { type: 'text/html' });
         const url = URL.createObjectURL(blob);
         
-        // Criar um link para download
         const a = document.createElement('a');
         a.href = url;
         a.download = 'pagina_com_fundo_personalizado.html';
         document.body.appendChild(a);
         a.click();
         
-        // Limpar
         setTimeout(function() {
           document.body.removeChild(a);
           URL.revokeObjectURL(url);
