@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabela - Layout Original com Margens</title>
+    <title>Tabela - Layout Corrigido com Margens</title>
     <style>
         :root {
             --header-bg: #b5aee8;
@@ -13,10 +13,12 @@
         }
 
         body {
-            margin: 20px; /* Margens em todos os lados */
+            margin: 0;
+            padding: 20px; /* Adicionando padding em vez de margin */
             font-family: Arial, Helvetica, sans-serif;
             background: #fff;
             color: var(--text);
+            box-sizing: border-box;
         }
 
         table {
