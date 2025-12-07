@@ -122,11 +122,12 @@
         box-shadow: 0 6px 18px rgba(29,114,255,0.22);
         transition: transform .12s ease, box-shadow .12s ease;
         -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
     }
 
     .btn-download:active { transform: translateY(1px) scale(.998); }
 
-    /* CONTAINER DA IMAGEM - SIMPLES SEM EFEITOS */
+    /* CONTAINER DA IMAGEM */
     .image-container {
         width: 100%;
         display: flex;
@@ -139,22 +140,6 @@
         max-width: 100%;
         height: auto;
         display: block;
-        /* SEM sombra, SEM borda, SEM borda arredondada, SEM efeitos */
-    }
-
-    /* Placeholder quando não tem imagem */
-    .imagem-placeholder {
-        width: 100%;
-        height: 150px;
-        background: #f9f9f9;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: #888;
-        font-size: 14px;
-        text-align: center;
-        padding: 20px;
     }
 
     /* WHATSAPP FIXO */
@@ -177,14 +162,6 @@
         width:36px; 
         height:36px; 
         display:block;
-    }
-
-    .zap:hover {
-        transform: scale(1.05);
-    }
-
-    .zap:active {
-        transform: scale(0.95);
     }
 
     @media (max-width:420px){
@@ -248,12 +225,16 @@
             </div>
 
             <div class="btn-wrap">
-                <a class="btn-download" href="#" download>Baixar Certificado (PDF)</a>
+                <!-- MUDA O NOME DO ARQUIVO AQUI NO "download" -->
+                <a class="btn-download" href="Adriano.pdf" download="meu_certificado.pdf">
+                    Baixar Certificado (PDF)
+                </a>
             </div>
 
             <!-- CONTAINER DA IMAGEM -->
-            <div class="image-container" id="imageContainer">
-                <!-- A imagem será carregada aqui via JavaScript -->
+            <div class="image-container">
+                <!-- COLOCA O NOME DA SUA IMAGEM AQUI NO "src" -->
+                <img src="certificado.png" alt="Certificado" class="certificado-imagem">
             </div>
         </div>
     </div>
@@ -262,86 +243,5 @@
     <a class="zap" href="https://wa.me/55XXXXXXXXX" aria-label="WhatsApp" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
-
-    <script>
-    // LISTA DE NOMES POSSÍVEIS PARA A IMAGEM
-    const possibleImageNames = [
-        'certificado.png',
-        'selo.png',
-        'assinatura.png',
-        'logo.png',
-        'carimbo.png',
-        'validador.png',
-        'imagem.png',
-        'foto.png',
-        'documento.png',
-        'comprovante.png',
-        'certificado.jpg',
-        'selo.jpg',
-        'assinatura.jpg',
-        'logo.jpg'
-    ];
-
-    // FUNÇÃO PARA TENTAR CARREGAR IMAGEM
-    function loadImage() {
-        const container = document.getElementById('imageContainer');
-        
-        // Primeiro tenta encontrar qualquer imagem PNG/JPG na pasta
-        const testImage = new Image();
-        
-        // Função para testar um nome específico
-        function testImageName(index) {
-            if (index >= possibleImageNames.length) {
-                // Se nenhuma imagem for encontrada, mostra placeholder
-                showPlaceholder();
-                return;
-            }
-            
-            const imageName = possibleImageNames[index];
-            testImage.src = imageName;
-            
-            testImage.onload = function() {
-                // Imagem encontrada! Exibe ela
-                const img = document.createElement('img');
-                img.src = imageName;
-                img.alt = 'Certificado';
-                img.className = 'certificado-imagem';
-                img.onload = function() {
-                    container.innerHTML = '';
-                    container.appendChild(img);
-                };
-                img.onerror = function() {
-                    // Tenta o próximo nome
-                    testImageName(index + 1);
-                };
-            };
-            
-            testImage.onerror = function() {
-                // Tenta o próximo nome
-                testImageName(index + 1);
-            };
-        }
-        
-        // Inicia o teste
-        testImageName(0);
-    }
-    
-    // FUNÇÃO PARA MOSTRAR PLACEHOLDER QUANDO NÃO ENCONTRAR IMAGEM
-    function showPlaceholder() {
-        const container = document.getElementById('imageContainer');
-        container.innerHTML = `
-            <div class="imagem-placeholder">
-                <div style="font-size: 48px; margin-bottom: 10px;">🖼️</div>
-                <div>Coloque uma imagem PNG/JPG na mesma pasta com um destes nomes:</div>
-                <div style="font-size: 12px; margin-top: 8px; color: #666;">
-                    certificado.png, selo.png, assinatura.png, etc.
-                </div>
-            </div>
-        `;
-    }
-    
-    // CARREGA A IMAGEM QUANDO A PÁGINA CARREGAR
-    document.addEventListener('DOMContentLoaded', loadImage);
-    </script>
 </body>
 </html>
