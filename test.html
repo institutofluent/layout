@@ -17,7 +17,7 @@
 
     html,body{
         height:100%;
-        width:100%;
+        min-height:100vh;
         overflow-x: hidden;
     }
 
@@ -27,24 +27,22 @@
         color: var(--text);
         -webkit-font-smoothing:antialiased;
         -moz-osx-font-smoothing:grayscale;
-        margin: 0;
         padding: 0;
-        min-height: 100vh;
+        margin: 0;
+        /* REMOVI o justify-content: center para ficar no topo */
         display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
+        flex-direction: column;
+        align-items: center; /* Ainda centraliza horizontalmente */
+        min-height: 100vh;
     }
 
     .container {
         width: 100%;
         max-width: 480px;
+        margin: 0 auto;
         padding: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: auto;
+        /* REMOVI o flex: 0 0 auto */
+        margin-top: 20px; /* Espaço do topo */
     }
 
     .card {
@@ -54,7 +52,7 @@
         box-shadow: 0 6px 16px rgba(0,0,0,0.20);
         position: relative;
         overflow: visible;
-        width: 100%;
+        margin: 0 auto;
     }
 
     .card:before {
@@ -126,7 +124,7 @@
 
     .btn-download:active { transform: translateY(1px) scale(.998); }
 
-    /* WHATSAPP FIXO NO CANTO INFERIOR ESQUERDO - AQUI É A CHAVE */
+    /* WHATSAPP FIXO */
     .zap {
         position: fixed;
         bottom: 20px;
@@ -157,7 +155,7 @@
     }
 
     @media (max-width:420px){
-        .container{ padding:15px }
+        .container{ padding:15px; margin-top: 15px; }
         .card{ padding:22px 16px }
         .titulo{ font-size:20px; margin-bottom:16px }
         .btn-download{ padding:13px 14px; max-width:100% }
@@ -171,6 +169,7 @@
     }
 
     @media (max-width:340px){
+        .container{ margin-top: 10px; }
         .card{ padding:18px 12px }
         .label{ font-size:11px }
         .valor{ font-size:15px }
@@ -181,6 +180,8 @@
         }
         .zap img{ width:30px; height:30px; }
     }
+
+    /* REMOVI a media query para telas altas */
 </style>
 </head>
 <body>
