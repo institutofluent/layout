@@ -1,165 +1,127 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Consulta</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificação</title>
 
 <style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        color: #333;
+    }
 
-  body{
-    margin:0;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background:#e7e4fa;
-    color:#000;
-    padding:20px;
-  }
+    .container {
+        width: 100%;
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+    }
 
-  /* topo colorido */
-  .faixa-topo{
-    width:100%;
-    height:160px;
-    background: linear-gradient(135deg, #9b91f7, #b9b2ff);
-    border-bottom-left-radius:30px;
-    border-bottom-right-radius:30px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.15);
-    position:relative;
-  }
+    .card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        margin-bottom: 20px;
+    }
 
-  .titulo-principal{
-    position:absolute;
-    bottom:20px;
-    left:30px;
-    color:white;
-    font-size:24px;
-    font-weight:700;
-    text-shadow:0 2px 4px rgba(0,0,0,0.25);
-  }
+    .titulo {
+        font-size: 22px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 15px;
+    }
 
-  /* CARD */
-  .card{
-    background:white;
-    width:92%;
-    max-width:600px;
-    margin: -60px auto 20px auto;
-    border-radius:18px;
-    padding:25px 25px 20px 25px;
-    box-shadow:0 8px 30px rgba(0,0,0,0.15);
-    position:relative;
-    border:1px solid rgba(255,255,255,0.4);
-  }
+    .item {
+        margin-bottom: 12px;
+    }
 
-  .linha{
-    margin-bottom:20px;
-  }
+    .label {
+        font-size: 13px;
+        color: #777;
+        margin-bottom: 3px;
+    }
 
-  .campo{
-    font-size:13px;
-    font-weight:700;
-    color:#6b6b6b;
-    letter-spacing:0.4px;
-    text-transform:uppercase;
-  }
+    .valor {
+        font-size: 16px;
+        font-weight: bold;
+    }
 
-  .valor{
-    font-size:17px;
-    margin-top:5px;
-    font-weight:600;
-    color:#2e2e2e;
-  }
+    .btn-download {
+        display: block;
+        width: 100%;
+        background: #1d72ff;
+        padding: 14px;
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: bold;
+        margin-top: 15px;
+    }
 
-  .cpf-red{
-    color:#d93535;
-  }
+    /* Botão WhatsApp */
+    .zap {
+        position: fixed;
+        bottom: 22px;
+        right: 22px;
+        background: #25D366;
+        padding: 16px;
+        border-radius: 50%;
+        box-shadow: 0 0 12px rgba(0,0,0,0.25);
+    }
 
-  /* pequenos divisores */
-  .divisor{
-    height:1px;
-    background:#ddd;
-    margin:15px 0;
-  }
-
-  /* botão */
-  .download{
-    display:block;
-    text-align:center;
-    padding:14px 20px;
-    background:#5a68ff;
-    color:#fff;
-    font-weight:700;
-    text-decoration:none;
-    border-radius:10px;
-    margin:25px auto 0 auto;
-    width:200px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
-    transition:0.2s;
-  }
-
-  .download:hover{
-    transform:scale(1.05);
-  }
-
-  /* texto auxiliar */
-  .texto-final{
-    margin-top:15px;
-    font-size:14px;
-    color:#444;
-    text-align:center;
-  }
-
+    .zap img {
+        width: 38px;
+        height: 38px;
+    }
 </style>
 </head>
-
 <body>
 
-<div class="faixa-topo">
-  <div class="titulo-principal">Verificação de Certificado</div>
-</div>
+<div class="container">
+    
+    <div class="card">
+        <div class="titulo">Verificação de Certificado</div>
 
-<div class="card">
+        <div class="item">
+            <div class="label">Nome</div>
+            <div class="valor">João da Silva</div>
+        </div>
 
-  <div class="linha">
-    <div class="campo">Nome</div>
-    <div class="valor">VICTOR HUGO LIMA PIRES</div>
-  </div>
+        <div class="item">
+            <div class="label">CPF</div>
+            <div class="valor">123.456.789-00</div>
+        </div>
 
-  <div class="divisor"></div>
+        <div class="item">
+            <div class="label">Curso</div>
+            <div class="valor">Curso de Eletricista</div>
+        </div>
 
-  <div class="linha">
-    <div class="campo">CPF</div>
-    <div class="valor cpf-red">043.574.781-97</div>
-  </div>
+        <div class="item">
+            <div class="label">Escola</div>
+            <div class="valor">Instituto Técnico XPTO</div>
+        </div>
 
-  <div class="divisor"></div>
+        <div class="item">
+            <div class="label">Status</div>
+            <div class="valor" style="color:green;">Válido</div>
+        </div>
 
-  <div class="linha">
-    <div class="campo">Curso</div>
-    <div class="valor">ENSINO MÉDIO</div>
-  </div>
-
-  <div class="divisor"></div>
-
-  <div class="linha">
-    <div class="campo">Escola</div>
-    <div class="valor">CENTRO REFERENCIAL DE EDUCAÇÃO</div>
-  </div>
-
-  <div class="divisor"></div>
-
-  <div class="linha">
-    <div class="campo">Status</div>
-    <div class="valor">Certificado Validado</div>
-  </div>
-
-  <a href="VictorHugo.pdf" class="download" download>
-    ⬇️ Baixar PDF
-  </a>
-
-  <div class="texto-final">
-    Confirme os dados acima antes de baixar o documento.
-  </div>
+        <a href="#" class="btn-download">Baixar Certificado (PDF)</a>
+    </div>
 
 </div>
+
+<!-- Botão WhatsApp -->
+<a class="zap" href="https://wa.me/55XXXXXXXXX">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+</a>
 
 </body>
 </html>
