@@ -1,193 +1,196 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Verificação de Certificado</title>
+<!DOCTYPE html>  
+<html lang="pt-BR">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Verificação de Certificado</title>  
+<style>  
+    :root{  
+        --bg-1: linear-gradient(to bottom, #e3e6ef 0%, #cfd4e3 100%);  
+        --card-bg: #ffffff;  
+        --accent: #1d72ff;  
+        --whatsapp: #25D366;  
+        --text: #222;  
+    }  
+  
+    *{box-sizing:border-box}  
+  
+    html,body{height:100%}  
+    body {  
+        margin: 0;  
+        padding: 0;  
+        font-family: Arial, sans-serif;  
+        background: var(--bg-1);  
+        color: var(--text);  
+        -webkit-font-smoothing:antialiased;  
+        -moz-osx-font-smoothing:grayscale;  
+        /* Garante que o body seja o contexto para elementos fixed */  
+        position: relative;  
+        min-height: 100vh;  
+    }  
+  
+    .container {  
+        width: 100%;  
+        max-width: 480px;  
+        margin: 0 auto;  
+        padding: 20px;  
+        padding-bottom: 80px; /* Espaço extra para o botão do WhatsApp */  
+    }  
+  
+    .card {  
+        background: var(--card-bg);  
+        padding: 28px 22px;  
+        border-radius: 16px;  
+        box-shadow: 0 6px 16px rgba(0,0,0,0.20);  
+        position: relative;  
+        overflow: visible;  
+        margin-bottom: 20px;  
+    }  
+  
+    .card:before {  
+        content: "";  
+        position: absolute;  
+        top: -60px;  
+        right: -60px;  
+        width: 160px;  
+        height: 160px;  
+        background: #4775ff;  
+        opacity: 0.12;  
+        border-radius: 50%;  
+        pointer-events: none;  
+    }  
+  
+    .titulo {  
+        font-size: 24px;  
+        font-weight: 700;  
+        text-align: center;  
+        margin-bottom: 20px;  
+        color: #1c1f2b;  
+    }  
+  
+    .item {  
+        margin-bottom: 14px;  
+    }  
+  
+    .label {  
+        display:block;  
+        font-size: 12px;  
+        color: #666;  
+        margin-bottom: 6px;  
+        text-transform: uppercase;  
+        font-weight: 700;  
+        letter-spacing: 0.6px;  
+    }  
+  
+    .valor {  
+        font-size: 16px;  
+        font-weight: 700;  
+        color: #111;  
+        line-height: 1.25;  
+        word-break: break-word;  
+    }  
+  
+    .btn-wrap {  
+        width: 100%;  
+        display:flex;  
+        justify-content:center;  
+        margin-top: 22px;  
+        padding: 0 6px;  
+    }  
+  
+    .btn-download {  
+        display: inline-block;  
+        width: 100%;  
+        max-width: 420px;  
+        background: var(--accent);  
+        padding: 14px 18px;  
+        text-align: center;  
+        color: #fff;  
+        text-decoration: none;  
+        border-radius: 10px;  
+        font-weight: 800;  
+        box-shadow: 0 6px 18px rgba(29,114,255,0.22);  
+        transition: transform .12s ease, box-shadow .12s ease;  
+        -webkit-tap-highlight-color: transparent;  
+    }  
+  
+    .btn-download:active { transform: translateY(1px) scale(.998); }  
+  
+    /* WhatsApp flutuante - CORRIGIDO */  
+    .zap {  
+        position: fixed;  
+        bottom: 20px;  
+        right: 20px;  
+        background: var(--whatsapp);  
+        padding: 14px;  
+        border-radius: 50%;  
+        box-shadow: 0 8px 30px rgba(0,0,0,0.25);  
+        z-index: 9999; /* Z-index mais alto */  
+        display:flex;  
+        align-items:center;  
+        justify-content:center;  
+        /* Garante que não seja afetado por rolagem */  
+        transform: translateZ(0);  
+        backface-visibility: hidden;  
+    }  
+  
+    .zap img{ width:36px; height:36px; display:block; }  
+  
+    @media (max-width:420px){  
+        .container{ padding:18px }  
+        .card{ padding:22px 16px }  
+        .titulo{ font-size:20px; margin-bottom:16px }  
+        .btn-download{ padding:13px 14px; max-width:100% }  
+        .btn-wrap{ padding: 0 10px }  
+    }  
+  
+    @media (max-width:340px){  
+        .card{ padding:18px 12px }  
+        .label{ font-size:11px }  
+        .valor{ font-size:15px }  
+        .zap{ padding:12px; bottom:14px; right:14px }  
+    }  
+</style>  
+</head>  
+<body>  
+    <div class="container">  
+        <div class="card">  
+            <div class="titulo">Verificação de Certificado</div>  
+            
+            <div class="item">  
+                <span class="label">Nome</span>  
+                <div class="valor">João da Silva</div>  
+            </div>  
 
-<style>
-    :root{
-      --bg-1: linear-gradient(to bottom, #e3e6ef 0%, #cfd4e3 100%);
-      --card-bg: #ffffff;
-      --accent: #1d72ff;
-      --whatsapp: #25D366;
-      --text: #222;
-    }
+            <div class="item">  
+                <span class="label">CPF</span>  
+                <div class="valor">123.456.789-00</div>  
+            </div>  
 
-    *{box-sizing:border-box}
+            <div class="item">  
+                <span class="label">Curso</span>  
+                <div class="valor">Eletricista Profissional</div>  
+            </div>  
 
-    html,body{height:100%}
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background: var(--bg-1);
-        color: var(--text);
-        -webkit-font-smoothing:antialiased;
-        -moz-osx-font-smoothing:grayscale;
-    }
+            <div class="item">  
+                <span class="label">Escola</span>  
+                <div class="valor">Instituto Técnico XPTO</div>  
+            </div>  
 
-    .container {
-        width: 100%;
-        max-width: 480px;
-        margin: 0 auto;
-        padding: 20px; /* espaço da página */
-    }
+            <div class="item">  
+                <span class="label">Status</span>  
+                <div class="valor" style="color:green">Válido</div>  
+            </div>  
 
-    .card {
-        background: var(--card-bg);
-        padding: 28px 22px; /* espaço interno da caixa */
-        border-radius: 16px;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.20);
-        position: relative;
-        overflow: visible;
-    }
+            <div class="btn-wrap">  
+                <a class="btn-download" href="#" download>Baixar Certificado (PDF)</a>  
+            </div>  
+        </div>  
+    </div>  
 
-    .card:before {
-        content: "";
-        position: absolute;
-        top: -60px;
-        right: -60px;
-        width: 160px;
-        height: 160px;
-        background: #4775ff;
-        opacity: 0.12;
-        border-radius: 50%;
-        pointer-events: none;
-    }
-
-    .titulo {
-        font-size: 24px;
-        font-weight: 700;
-        text-align: center;
-        margin-bottom: 20px;
-        color: #1c1f2b;
-    }
-
-    .item {
-        margin-bottom: 14px;
-    }
-
-    .label {
-        display:block;
-        font-size: 12px;
-        color: #666;
-        margin-bottom: 6px;
-        text-transform: uppercase;
-        font-weight: 700;
-        letter-spacing: 0.6px;
-    }
-
-    .valor {
-        font-size: 16px;
-        font-weight: 700;
-        color: #111;
-        line-height: 1.25;
-        word-break: break-word;
-    }
-
-    /* botão agora centrado com margem lateral garantida */
-    .btn-wrap {
-      width: 100%;
-      display:flex;
-      justify-content:center;
-      margin-top: 22px;
-      padding: 0 6px; /* garante pequena folga lateral em telas extremas */
-    }
-
-    .btn-download {
-        display: inline-block;
-        width: 100%;
-        max-width: 420px; /* não deixa colar nas bordas */
-        background: var(--accent);
-        padding: 14px 18px;
-        text-align: center;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 10px;
-        font-weight: 800;
-        box-shadow: 0 6px 18px rgba(29,114,255,0.22);
-        transition: transform .12s ease, box-shadow .12s ease;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    .btn-download:active { transform: translateY(1px) scale(.998); }
-
-    /* WhatsApp flutuante */
-    .zap {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: var(--whatsapp);
-        padding: 14px;
-        border-radius: 50%;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.25);
-        z-index: 999;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-    }
-
-    .zap img{ width:36px; height:36px; display:block; }
-
-    /* responsividade fina */
-    @media (max-width:420px){
-      .container{ padding:18px }
-      .card{ padding:22px 16px }
-      .titulo{ font-size:20px; margin-bottom:16px }
-      .btn-download{ padding:13px 14px; max-width:100% }
-      .btn-wrap{ padding: 0 10px }
-    }
-
-    @media (max-width:340px){
-      .card{ padding:18px 12px }
-      .label{ font-size:11px }
-      .valor{ font-size:15px }
-      .zap{ padding:12px; bottom:14px; right:14px }
-    }
-</style>
-</head>
-<body>
-
-<div class="container">
-    <div class="card">
-        <div class="titulo">Verificação de Certificado</div>
-
-        <div class="item">
-            <span class="label">Nome</span>
-            <div class="valor">João da Silva</div>
-        </div>
-
-        <div class="item">
-            <span class="label">CPF</span>
-            <div class="valor">123.456.789-00</div>
-        </div>
-
-        <div class="item">
-            <span class="label">Curso</span>
-            <div class="valor">Eletricista Profissional</div>
-        </div>
-
-        <div class="item">
-            <span class="label">Escola</span>
-            <div class="valor">Instituto Técnico XPTO</div>
-        </div>
-
-        <div class="item">
-            <span class="label">Status</span>
-            <div class="valor" style="color:green">Válido</div>
-        </div>
-
-        <!-- wrapper garante espaçamento lateral mesmo em telas estreitas -->
-        <div class="btn-wrap">
-          <a class="btn-download" href="#" download>Baixar Certificado (PDF)</a>
-        </div>
-    </div>
-</div>
-
-<a class="zap" href="https://wa.me/55XXXXXXXXX" aria-label="WhatsApp">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-</a>
-
-</body>
+    <!-- Botão do WhatsApp FORA do container, direto no body -->  
+    <a class="zap" href="https://wa.me/55XXXXXXXXX" aria-label="WhatsApp" target="_blank">  
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">  
+    </a>  
+</body>  
 </html>
