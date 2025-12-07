@@ -126,6 +126,23 @@
 
     .btn-download:active { transform: translateY(1px) scale(.998); }
 
+    /* CONTAINER DA IMAGEM */
+    .image-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        padding: 0 6px;
+    }
+
+    .certificado-imagem {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        border: 1px solid rgba(0,0,0,0.08);
+    }
+
     /* WHATSAPP FIXO */
     .zap {
         position: fixed;
@@ -162,6 +179,7 @@
         .titulo{ font-size:20px; margin-bottom:16px }
         .btn-download{ padding:13px 14px; max-width:100% }
         .btn-wrap{ padding: 0 10px }
+        .image-container { margin-top: 24px; }
         .zap {
             bottom: 15px;
             left: 15px;
@@ -175,6 +193,7 @@
         .card{ padding:18px 12px }
         .label{ font-size:11px }
         .valor{ font-size:15px }
+        .image-container { margin-top: 20px; }
         .zap{ 
             bottom: 12px; 
             left: 12px;
@@ -216,6 +235,24 @@
 
             <div class="btn-wrap">
                 <a class="btn-download" href="#" download>Baixar Certificado (PDF)</a>
+            </div>
+
+            <!-- CONTAINER DA IMAGEM -->
+            <div class="image-container">
+                <!-- 
+                    Substitua a URL abaixo pela URL da sua imagem no GitHub
+                    Formato: https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPOSITORIO/main/nome-da-imagem.png
+                    
+                    Exemplos de nomes de arquivo que podem ser usados:
+                    - certificado.png
+                    - selo.png
+                    - logo.png
+                    - assinatura.png
+                    - carimbo.png
+                -->
+                <img src="https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPOSITORIO/main/certificado.png" 
+                     alt="Certificado"
+                     class="certificado-imagem">
             </div>
         </div>
     </div>
