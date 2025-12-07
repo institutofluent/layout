@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Verificação de Certificado</title>
 <style>
-    /* TODO O CSS ANTERIOR PERMANECE IGUAL */
     :root{
         --bg-1: linear-gradient(
             to bottom, 
@@ -127,7 +126,7 @@
 
     .btn-download:active { transform: translateY(1px) scale(.998); }
 
-    /* CONTAINER DA IMAGEM - NOVO */
+    /* CONTAINER DA IMAGEM - SIMPLES SEM EFEITOS */
     .image-container {
         width: 100%;
         display: flex;
@@ -138,20 +137,16 @@
 
     .certificado-imagem {
         max-width: 100%;
-        max-height: 300px; /* Limita a altura máxima */
         height: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        border: 1px solid rgba(0,0,0,0.08);
-        object-fit: contain; /* Mantém proporção */
+        display: block;
+        /* SEM sombra, SEM borda, SEM borda arredondada, SEM efeitos */
     }
 
-    /* ESTILO PARA QUANDO A IMAGEM NÃO CARREGAR */
+    /* Placeholder quando não tem imagem */
     .imagem-placeholder {
         width: 100%;
-        height: 200px;
-        background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
-        border-radius: 8px;
+        height: 150px;
+        background: #f9f9f9;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -160,13 +155,6 @@
         font-size: 14px;
         text-align: center;
         padding: 20px;
-        border: 2px dashed #ccc;
-    }
-
-    .imagem-placeholder i {
-        font-size: 48px;
-        margin-bottom: 10px;
-        color: #aaa;
     }
 
     /* WHATSAPP FIXO */
@@ -206,7 +194,6 @@
         .btn-download{ padding:13px 14px; max-width:100% }
         .btn-wrap{ padding: 0 10px }
         .image-container { margin-top: 24px; }
-        .certificado-imagem { max-height: 250px; }
         .zap {
             bottom: 15px;
             left: 15px;
@@ -221,7 +208,6 @@
         .label{ font-size:11px }
         .valor{ font-size:15px }
         .image-container { margin-top: 20px; }
-        .certificado-imagem { max-height: 200px; }
         .zap{ 
             bottom: 12px; 
             left: 12px;
@@ -346,9 +332,9 @@
         container.innerHTML = `
             <div class="imagem-placeholder">
                 <div style="font-size: 48px; margin-bottom: 10px;">🖼️</div>
-                <div>Coloque uma imagem com um destes nomes na mesma pasta:</div>
+                <div>Coloque uma imagem PNG/JPG na mesma pasta com um destes nomes:</div>
                 <div style="font-size: 12px; margin-top: 8px; color: #666;">
-                    ${possibleImageNames.slice(0, 6).join(', ')}...
+                    certificado.png, selo.png, assinatura.png, etc.
                 </div>
             </div>
         `;
