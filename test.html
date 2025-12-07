@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Verificação de Certificado</title>
 <style>
     :root{
@@ -15,7 +15,11 @@
 
     *{box-sizing:border-box; margin:0; padding:0;}
 
-    html,body{height:100%; min-height:100vh;}
+    html,body{
+        height:100%;
+        min-height:100vh;
+        overflow-x: hidden; /* Evita rolagem horizontal */
+    }
 
     body {
         font-family: Arial, sans-serif;
@@ -23,7 +27,14 @@
         color: var(--text);
         -webkit-font-smoothing:antialiased;
         -moz-osx-font-smoothing:grayscale;
-        padding-bottom: 30px; /* Espaço para o botão fixo */
+        padding: 0;
+        margin: 0;
+        /* Centraliza verticalmente o conteúdo */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
     }
 
     .container {
@@ -31,6 +42,8 @@
         max-width: 480px;
         margin: 0 auto;
         padding: 20px;
+        /* Garante que o container ocupe altura necessária */
+        flex: 0 0 auto;
     }
 
     .card {
@@ -40,7 +53,7 @@
         box-shadow: 0 6px 16px rgba(0,0,0,0.20);
         position: relative;
         overflow: visible;
-        margin-bottom: 30px;
+        margin: 0 auto; /* Centraliza horizontalmente */
     }
 
     .card:before {
@@ -116,7 +129,7 @@
     .zap {
         position: fixed;
         bottom: 20px;
-        left: 20px; /* ESQUERDA em vez de direita */
+        left: 20px;
         background: var(--whatsapp);
         padding: 14px;
         border-radius: 50%;
@@ -126,9 +139,9 @@
         align-items:center;
         justify-content:center;
         text-decoration: none;
-        /* Garante que não vai se mover */
-        transform: translateZ(0);
-        -webkit-transform: translateZ(0);
+        /* Impede qualquer transformação indesejada */
+        transform: none !important;
+        -webkit-transform: none !important;
     }
 
     .zap img{ 
@@ -138,14 +151,14 @@
         filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
     }
 
-    /* Efeito hover opcional */
+    /* Efeito hover */
     .zap:hover {
-        transform: scale(1.05);
+        transform: scale(1.05) !important;
         box-shadow: 0 10px 35px rgba(0,0,0,0.3);
     }
 
     .zap:active {
-        transform: scale(0.95);
+        transform: scale(0.95) !important;
     }
 
     @media (max-width:420px){
@@ -172,6 +185,14 @@
             padding: 10px;
         }
         .zap img{ width:30px; height:30px; }
+    }
+
+    /* Para telas muito altas - centralização vertical */
+    @media (min-height: 800px) {
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
     }
 </style>
 </head>
@@ -209,14 +230,9 @@
                 <a class="btn-download" href="#" download>Baixar Certificado (PDF)</a>
             </div>
         </div>
-        
-        <!-- Adicione mais conteúdo aqui se quiser testar a rolagem -->
-        <div style="height: 800px; text-align: center; padding-top: 30px; color: #666;">
-            (Conteúdo adicional para testar rolagem... role para baixo para ver o botão fixo)
-        </div>
     </div>
 
-    <!-- BOTÃO DO WHATSAPP FIXO FORA DO CONTAINER -->
+    <!-- BOTÃO DO WHATSAPP FIXO -->
     <a class="zap" href="https://wa.me/55XXXXXXXXX" aria-label="WhatsApp" target="_blank">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
