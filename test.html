@@ -6,7 +6,7 @@
 <title>Verificação de Certificado</title>
 <style>
     :root{
-        --bg-1: linear-gradient(to bottom, #e3e6ef 0%, #cfd4e3 100%);
+        --bg-1: linear-gradient(to bottom, #fff9c4 0%, #fff176 100%); /* AMARELO */
         --card-bg: #ffffff;
         --accent: #1d72ff;
         --whatsapp: #25D366;
@@ -29,10 +29,9 @@
         -moz-osx-font-smoothing:grayscale;
         padding: 0;
         margin: 0;
-        /* REMOVI o justify-content: center para ficar no topo */
         display: flex;
         flex-direction: column;
-        align-items: center; /* Ainda centraliza horizontalmente */
+        align-items: center;
         min-height: 100vh;
     }
 
@@ -41,8 +40,7 @@
         max-width: 480px;
         margin: 0 auto;
         padding: 20px;
-        /* REMOVI o flex: 0 0 auto */
-        margin-top: 20px; /* Espaço do topo */
+        margin-top: 20px;
     }
 
     .card {
@@ -62,8 +60,8 @@
         right: -60px;
         width: 160px;
         height: 160px;
-        background: #4775ff;
-        opacity: 0.12;
+        background: #ff3333; /* VERMELHO */
+        opacity: 0.15; /* 15% transparente */
         border-radius: 50%;
         pointer-events: none;
     }
@@ -180,8 +178,6 @@
         }
         .zap img{ width:30px; height:30px; }
     }
-
-    /* REMOVI a media query para telas altas */
 </style>
 </head>
 <body>
