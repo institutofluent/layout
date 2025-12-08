@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verificação de Certificado</title>
+<style>
+    :root{
+        --bg-1: linear-gradient(
+            to bottom, 
+            rgba(255, 249, 196, 0.8) 0%,
+            rgba(255, 241, 118, 0.6) 100%
+        );
+        --card-bg: #ffffff;
+        --accent: #1d72ff;
+        --whatsapp: #25D366;
+        --text: #222;
+    }
+
+    *{box-sizing:border-box; margin:0; padding:0;}
+
+    html,body{
+        height:100%;
+        min-height:100vh;
+        overflow-x: hidden;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: var(--bg-1);
+        color: var(--text);
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .card {
+        background: var(--card-bg);
+        padding: 28px 22px;
+        border-radius: 16px;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.20);
+        position: relative;
+        overflow: visible;
+        margin: 0 auto;
+    }
+
+    .card:before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 160px;
+        height: 160px;
+        background: #ff3333;
+        opacity: 0.15;
+        border-radius: 50%;
+        pointer-events: none;
+    }
+
+    .titulo {
+        font-size: 24px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 20px;
+        color: #1c1f2b;
+    }
+
+    .item {
+        margin-bottom: 14px;
+    }
+
+    .label {
+        display:block;
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+    }
+
+    .valor {
+        font-size: 16px;
+        font-weight: 700;
+        color: #111;
+        line-height: 1.25;
+        word-break: break-word;
+    }
+
+    .btn-wrap {
+        width: 100%;
+        display:flex;
+        justify-content:center;
+        margin-top: 22px;
+        padding: 0 6px;
+    }
+
+    .btn-download {
+        display: inline-block;
+        width: 100%;
+        max-width: 420px;
+        background: var(--accent);
+        padding: 14px 18px;
+        text-align: center;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: 800;
+        box-shadow: 0 6px 18px rgba(29,114,255,0.22);
+        transition: transform .12s ease, box-shadow .12s ease;
+        -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
+    }
+
+    .btn-download:active { transform: translateY(1px) scale(.998); }
+
+    /* CONTAINER DA IMAGEM */
+    .image-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        padding: 0 6px;
+    }
+
+    .certificado-imagem {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* WHATSAPP FIXO */
+    .zap {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: var(--whatsapp);
+        padding: 14px;
+        border-radius: 50%;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+        z-index: 9999;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        text-decoration: none;
+    }
+
+    .zap img{ 
+        width:36px; 
+        height:36px; 
+        display:block;
+    }
+
+    @media (max-width:420px){
+        .container{ padding:15px; margin-top: 15px; }
+        .card{ padding:22px 16px }
+        .titulo{ font-size:20px; margin-bottom:16px }
+        .btn-download{ padding:13px 14px; max-width:100% }
+        .btn-wrap{ padding: 0 10px }
+        .image-container { margin-top: 24px; }
+        .zap {
+            bottom: 15px;
+            left: 15px;
+            padding: 12px;
+        }
+        .zap img{ width:32px; height:32px; }
+    }
+
+    @media (max-width:340px){
+        .container{ margin-top: 10px; }
+        .card{ padding:18px 12px }
+        .label{ font-size:11px }
+        .valor{ font-size:15px }
+        .image-container { margin-top: 20px; }
+        .zap{ 
+            bottom: 12px; 
+            left: 12px;
+            padding: 10px;
+        }
+        .zap img{ width:30px; height:30px; }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="titulo">Verificação de Certificado</div>
+            
+            <div class="item">
+                <span class="label">Nome</span>
+                <div class="valor">Isabela Lima de Sousa</div>
+            </div>
+
+            <div class="item">
+                <span class="label">CPF</span>
+                <div class="valor">096.400.823-84</div>
+            </div>
+
+            <div class="item">
+                <span class="label">Curso</span>
+                <div class="valor">EJA</div>
+            </div>
+
+            <div class="item">
+                <span class="label">Escola</span>
+                <div class="valor">GLOBAL</div>
+            </div>
+
+            <div class="item">
+                <span class="label">Status</span>
+                <div class="valor" style="color:green">Válido</div>
+            </div>
+
+            <div class="btn-wrap">
+                <!-- MUDA O NOME DO ARQUIVO AQUI NO "download" -->
+                <a class="btn-download" href="Isabela.pdf" download="meu_certificado.pdf">
+                    Baixar Certificado (PDF)
+                </a>
+            </div>
+
+            <!-- CONTAINER DA IMAGEM -->
+            <div class="image-container">
+                <!-- COLOCA O NOME DA SUA IMAGEM AQUI NO "src" -->
+                <img src="logo.png" alt="Certificado" class="certificado-imagem">
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÃO DO WHATSAPP FIXO -->
+    <a class="zap" href="https://wa.me/5585985256372" aria-label="WhatsApp" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+</body>
+</html>
