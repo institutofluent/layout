@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=0.6">
+  <title>Tabela - Topo com texto e botão independentes</title>
+  <style>
+    :root{  
+      --header-bg: #b5aee8;  
+      --row-bg: #f3f0fa;  
+      --cpf-red: #e53935;  
+      --muted: #6e6e6e;  
+      --whatsapp-green: #25d366;
+    }  
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:#fff;
+      color:#000;
+      position:relative;
+      min-height: 100vh;
+      overflow-x: auto;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      max-width:1100px;
+      margin-left:auto;
+      margin-right:auto;
+      table-layout: fixed;
+    }
+
+    thead th{
+      background:var(--header-bg);
+      color:#fff !important;
+      font-weight:600;
+      font-size:14px;
+      text-align:left;
+      padding:8px 10px;
+      white-space: nowrap;
+    }
+
+    tbody td{
+      background:var(--row-bg);
+      padding:12px 10px;
+      font-size:13px;
+      vertical-align:middle;
+      border-top:1px solid #ddd;
+      border-left:1px solid #ddd;
+      line-height:1.4;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    tbody td:first-child{
+      border-left:none;
+    }
+
+    .dotcol{ 
+      font-weight:bold; 
+      color:var(--muted); 
+      width: 40px;
+      text-align:center; 
+    }
+    
+    .nome, .curso, .escola, .status{
+      color:var(--muted);
+      font-weight:600;
+      text-transform:uppercase;
+      line-height:1.3;
+    }
+    
+    .cpf{ 
+      color:var(--cpf-red); 
+      font-weight:bold; 
+      width: 150px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    thead th.cpf {
+      color: #fff !important;
+    }
+    
+    .escola{ 
+      font-size:12px; 
+    }
+    
+    .status{ 
+      font-size:12px; 
+      text-align:right;
+      width: 140px;
+    }
+
+    .nome {
+      min-width: 180px;
+    }
+    
+    .curso {
+      width: 120px;
+    }
+    
+    .escola {
+      min-width: 160px;
+    }
+
+    .posicionavel{
+      position:absolute;
+    }
+
+    .texto{
+      font-size:14px;
+      color:#333;
+      line-height:1.4;
+    }
+
+    .download{
+      display:inline-block;
+      padding:12px 20px;
+      background:#4a6cf7;
+      color:#fff;
+      font-weight:bold;
+      text-decoration:none;
+      border-radius:6px;
+    }
+
+    .download:hover{ background:#354cd4; }
+
+    #fundo-personalizavel {
+      position: fixed;
+      top: 350px;
+      left: 0px;
+      width: 100%;
+      height: 100%;
+      background-color: #a99ef7;
+      opacity: 0.6;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* BOTÃO DO WHATSAPP AUMENTADO */
+    .whatsapp-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 10000;
+    }
+
+    .whatsapp-float {
+      width: 80px; /* Aumentado de 60px para 80px */
+      height: 80px; /* Aumentado de 60px para 80px */
+      background-color: var(--whatsapp-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.9;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .whatsapp-float:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    .whatsapp-icon {
+      width: 45px; /* Aumentado de 35px para 45px */
+      height: 45px; /* Aumentado de 35px para 45px */
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .whatsapp-icon::before {
+      content: "";
+      width: 30px; /* Aumentado de 25px para 30px */
+      height: 30px; /* Aumentado de 25px para 30px */
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%2325d366' d='M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    .speech-bubble {
+      position: absolute;
+      bottom: 90px; /* Ajustado para acompanhar o botão maior */
+      right: 0;
+      background: white;
+      border-radius: 20px;
+      padding: 12px 18px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+      z-index: 10000;
+      pointer-events: none;
+      font-size: 14px;
+      font-weight: bold;
+      color: #333;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .speech-bubble:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 30px; /* Ajustado para centralizar com o botão maior */
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid white;
+    }
+
+    .speech-bubble.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes pulse {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(0) scale(1.05); }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    .speech-bubble.pulse {
+      animation: pulse 2s infinite;
+    }
+
+    .close-bubble {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      width: 24px;
+      height: 24px;
+      background: #e53935;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      pointer-events: all;
+    }
+
+    @media (max-width: 768px) {
+      table {
+        table-layout: auto;
+        width: 100%;
+        min-width: 600px;
+      }
+      
+      thead th {
+        white-space: normal;
+        font-size: 12px;
+        padding: 6px 5px;
+      }
+      
+      tbody td {
+        padding: 8px 5px;
+        font-size: 12px;
+      }
+      
+      .dotcol {
+        width: 30px;
+      }
+      
+      .cpf {
+        width: 120px;
+        white-space: nowrap;
+      }
+      
+      .status {
+        width: 110px;
+      }
+      
+      .posicionavel {
+        position: static;
+        margin: 20px;
+      }
+      
+      .texto {
+        margin-top: 30px;
+      }
+      
+      /* Ajustes para o WhatsApp em mobile */
+      .whatsapp-container {
+        bottom: 15px;
+        right: 15px;
+      }
+      
+      .whatsapp-float {
+        width: 70px; /* Aumentado proporcionalmente para mobile */
+        height: 70px; /* Aumentado proporcionalmente para mobile */
+      }
+      
+      .whatsapp-icon {
+        width: 40px; /* Aumentado proporcionalmente para mobile */
+        height: 40px; /* Aumentado proporcionalmente para mobile */
+      }
+      
+      .speech-bubble {
+        bottom: 80px; /* Ajustado para mobile */
+        right: -10px;
+        font-size: 12px;
+        padding: 10px 15px;
+      }
+    }
+
+    /* ADMISSÃO DA LIMITAÇÃO */
+    .limitation-notice {
+      position: fixed;
+      bottom: 110px;
+      right: 20px;
+      background: #ffebee;
+      color: #c62828;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-size: 12px;
+      max-width: 250px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 10001;
+      display: none; /* Oculto por padrão */
+    }
+  </style>
+</head>
+<body>
+  <table>  
+    <thead>  
+      <tr>  
+        <th class="dotcol"></th>  
+        <th class="nome">Nome</th>  
+        <th class="cpf">CPF</th>  
+        <th class="curso">Curso</th>  
+        <th class="escola">Escola</th>  
+        <th class="status">Status</th>  
+      </tr>  
+    </thead>  
+    <tbody>  
+      <tr>  
+        <td class="dotcol">...</td>  
+        <td class="nome">CLEILSA MARIA DA SILVA</td>  
+        <td class="cpf">011.732.343-81</td>  
+        <td class="curso">ENSINO MÉDIO</td>  
+        <td class="escola">CENTRO REFERENCIAL DE EDUCAÇÃO</td>  
+        <td class="status">Certificado Validado</td>  
+      </tr>  
+    </tbody>  
+  </table>    
+
+  <div class="posicionavel texto" style="top:150px; left:60px;">  
+    Por favor, verifique se as informações acima coincidem com o certificado emitido.<br>  
+    Caso estejam corretas, faça o download do documento oficial em PDF abaixo.  
+  </div>    
+
+  <a href="AntonielArruda.pdf" class="download posicionavel" style="top:250px; left:60px;" download>  
+    ⬇️ Confira  
+  </a>
+
+  <div id="fundo-personalizavel"></div>
+  
+  <!-- Container para o botão do WhatsApp e balão -->
+  <div class="whatsapp-container">
+    <div class="speech-bubble">
+      <div class="close-bubble">×</div>
+      Fale Conosco
+    </div>
+    <div class="whatsapp-float">
+      <div class="whatsapp-icon"></div>
+    </div>
+  </div>
+
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const whatsappButton = document.querySelector('.whatsapp-float');
+      const speechBubble = document.querySelector('.speech-bubble');
+      const closeBubble = document.querySelector('.close-bubble');
+      const limitationNotice = document.querySelector('.limitation-notice');
+      let bubbleInterval;
+      
+      // Função para mostrar o balão
+      function showBubble() {
+        speechBubble.classList.add('show');
+        setTimeout(() => {
+          speechBubble.classList.add('pulse');
+        }, 500);
+      }
+      
+      // Função para esconder o balão
+      function hideBubble() {
+        speechBubble.classList.remove('show', 'pulse');
+      }
+      
+      // Configurar intervalo para mostrar o balão a cada 10 segundos
+      function startBubbleInterval() {
+        bubbleInterval = setInterval(() => {
+          showBubble();
+          
+          // Esconder após 5 segundos
+          setTimeout(hideBubble, 5000);
+        }, 10000);
+      }
+      
+      // Iniciar o intervalo
+      startBubbleInterval();
+      
+      // Mostrar balão ao passar o mouse (opcional)
+      whatsappButton.addEventListener('mouseenter', function() {
+        // Limpar intervalo temporariamente
+        clearInterval(bubbleInterval);
+        showBubble();
+      });
+      
+      // Esconder balão ao retirar o mouse
+      whatsappButton.addEventListener('mouseleave', function() {
+        setTimeout(hideBubble, 1000);
+        // Reiniciar intervalo
+        setTimeout(startBubbleInterval, 11000);
+      });
+      
+      // Fechar balão ao clicar no ×
+      closeBubble.addEventListener('click', function(e) {
+        e.stopPropagation();
+        hideBubble();
+        // Reiniciar intervalo após 10 segundos
+        clearInterval(bubbleInterval);
+        setTimeout(startBubbleInterval, 10000);
+      });
+      
+      // Redirecionar ao clicar no botão do WhatsApp
+      whatsappButton.addEventListener('click', function() {
+        window.open('https://wa.me/5585985256372', '_blank');
+      });
+      
+      // Mostrar balão por alguns segundos ao carregar a página
+      setTimeout(function() {
+        showBubble();
+        
+        setTimeout(function() {
+          hideBubble();
+        }, 5000);
+      }, 2000);
+      
+      // Mostrar a notificação de limitação por alguns segundos ao carregar a página
+      setTimeout(function() {
+        limitationNotice.style.display = 'block';
+        
+        setTimeout(function() {
+          limitationNotice.style.display = 'none';
+        }, 8000);
+      }, 3000);
+    });
+  </script>
+</body>
+                                                           </html>
