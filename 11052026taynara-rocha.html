@@ -15,7 +15,7 @@
       --row-hover: #fef0ef;        /* vermelho bem fraco ao passar mouse */
       --border-light: #f3e2e0;
       --muted-text: #5e5453;
-      --cpf-red: #bc544f;          /* vermelho leve mas distinguível */
+      --text-default: #2c2625;     /* cor padrão para todos os textos (inclusive CPF) */
       --accent-valid: #bc6f5c;
       --shadow-soft: 0 6px 18px rgba(130, 70, 60, 0.06);
     }  
@@ -29,7 +29,7 @@
     body{
       background: var(--soft-red-bg);
       font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
-      color: #2c2625;
+      color: var(--text-default);
       padding: 40px 24px 60px 24px;
       position: relative;
       min-height: 100vh;
@@ -98,9 +98,9 @@
       padding: 15px 14px;
       font-size: 0.88rem;
       font-weight: 450;
-      color: #2f2a29;
+      color: var(--text-default);
       border-bottom: 1px solid var(--border-light);
-      font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+      font-family: inherit;
       vertical-align: middle;
     }
 
@@ -131,27 +131,25 @@
       letter-spacing: 2px;
     }
 
-    /* definindo larguras alinhadas para consistência */
+    /* TODAS AS CÉLULAS COM A MESMA COR DE TEXTO - SEM VERMELHO NO CPF */
     .nome {
       font-weight: 600;
-      color: #3d312f;
+      color: var(--text-default);
       min-width: 190px;
     }
     .cpf {
       font-weight: 600;
-      color: var(--cpf-red);
-      letter-spacing: 0.2px;
-      /* mesma fonte do restante da tabela, sem monospace exótico */
+      color: var(--text-default);  /* COR PADRÃO, NADA DE VERMELHO */
       font-family: inherit;
       white-space: nowrap;
     }
     .curso {
       font-weight: 500;
-      color: #5e524f;
+      color: var(--text-default);
     }
     .escola {
       font-weight: 500;
-      color: #5e524f;
+      color: var(--text-default);
     }
     
     /* status com selo de validação correto */
@@ -228,7 +226,7 @@
       box-shadow: 0 8px 16px rgba(175, 95, 85, 0.15);
     }
 
-    /* Rodapé / small (nenhum elemento de whatsapp) */
+    /* Rodapé */
     .footer-note {
       text-align: center;
       margin-top: 30px;
@@ -272,10 +270,6 @@
       }
     }
 
-    /* cores adicionais de harmonia, mantendo vermelho suave */
-    a, .download-button:active {
-      outline: none;
-    }
     strong {
       color: #bc6b64;
       font-weight: 700;
@@ -328,21 +322,7 @@
   </div>
 
   <script>
-    // script apenas para garantir a consistência da apresentação e confirmar validação
-    // Nenhum elemento de whatsapp ou balão. Apenas comportamento simples e limpo.
     document.addEventListener('DOMContentLoaded', function() {
-      // Pequeno efeito visual sutil apenas para garantir que o hover da tabela 
-      // já está no CSS, sem nenhuma interação extra.
-      // Opcional: garantir que o link de download aponte para o arquivo correto.
-      const downloadLink = document.querySelector('.download-button');
-      if (downloadLink && downloadLink.getAttribute('href') === 'TaynaraRocha.pdf') {
-        // Mantém o comportamento padrão — nenhum erro.
-        // Adicionamos um pequeno console silencioso apenas para fins de depuração.
-        console.log('Pronto para validação do certificado');
-      }
-      
-      // Deixar explícito que a validação está correta, sem qualquer interferência.
-      // Adicionar tooltip sutil no status (opcional)
       const statusSpan = document.querySelector('.status-badge');
       if (statusSpan) {
         statusSpan.setAttribute('title', 'Este documento foi autenticado pela instituição de ensino');
