@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validação de Certificado | Sistema Escolar</title>
+  <style>
+    /* ========== ROOT - TOM VERMELHO LEVE / UNIFORME ========== */
+    :root{  
+      --soft-red-bg: #fef6f5;      /* fundo geral muito suave */
+      --card-white: #ffffff;
+      --header-bg: #cd807b;        /* vermelho suave e equilibrado para cabeçalho */
+      --header-text: #ffffff;
+      --row-bg: #ffffff;
+      --row-hover: #fef0ef;        /* vermelho bem fraco ao passar mouse */
+      --border-light: #f3e2e0;
+      --muted-text: #5e5453;
+      --text-default: #2c2625;     /* cor padrão para todos os textos (inclusive CPF) */
+      --accent-valid: #bc6f5c;
+      --shadow-soft: 0 6px 18px rgba(130, 70, 60, 0.06);
+      --whatsapp-green: #25d366;
+    }  
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body{
+      background: var(--soft-red-bg);
+      font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+      color: var(--text-default);
+      padding: 40px 24px 60px 24px;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* elemento decorativo vermelho bem fraco */
+    #fundo-personalizavel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at 30% 40%, rgba(205, 128, 123, 0.06) 0%, rgba(255,245,244,0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* container principal da tabela com arredondamento */
+    .table-container {
+      max-width: 1180px;
+      margin: 24px auto 20px auto;
+      background: var(--card-white);
+      border-radius: 28px;
+      box-shadow: var(--shadow-soft), 0 1px 2px rgba(0,0,0,0.02);
+      overflow-x: auto;
+      border: 1px solid #f5e4e2;
+    }
+
+    /* tabela - FONTE ÚNICA E CONSISTENTE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Segoe UI', 'Roboto', system-ui, sans-serif;
+      font-size: 0.9rem;
+      min-width: 680px;
+    }
+
+    /* cabeçalho com vermelho suave */
+    thead tr {
+      background: var(--header-bg);
+    }
+    thead th {
+      color: var(--header-text);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      padding: 16px 14px;
+      text-align: left;
+      border-bottom: none;
+      background: var(--header-bg);
+    }
+
+    thead th:first-child {
+      border-top-left-radius: 28px;
+      padding-left: 20px;
+    }
+    thead th:last-child {
+      border-top-right-radius: 28px;
+      padding-right: 20px;
+    }
+
+    /* células do corpo - fundo claro e tipografia única */
+    tbody td {
+      background: var(--row-bg);
+      padding: 15px 14px;
+      font-size: 0.88rem;
+      font-weight: 450;
+      color: var(--text-default);
+      border-bottom: 1px solid var(--border-light);
+      font-family: inherit;
+      vertical-align: middle;
+    }
+
+    /* hover suave com vermelho fraco */
+    tbody tr:hover td {
+      background: var(--row-hover);
+      transition: background 0.2s ease;
+    }
+
+    /* última linha sem borda inferior e cantos redondos */
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    tbody tr:last-child td:first-child {
+      border-bottom-left-radius: 28px;
+    }
+    tbody tr:last-child td:last-child {
+      border-bottom-right-radius: 28px;
+    }
+
+    /* coluna de três pontos decorativos */
+    .dotcol {
+      font-weight: 600;
+      color: #b18580;
+      width: 48px;
+      text-align: center;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+
+    /* TODAS AS CÉLULAS COM A MESMA COR DE TEXTO - SEM VERMELHO NO CPF */
+    .nome {
+      font-weight: 600;
+      color: var(--text-default);
+      min-width: 190px;
+    }
+    .cpf {
+      font-weight: 600;
+      color: var(--text-default);  /* COR PADRÃO, NADA DE VERMELHO */
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .curso {
+      font-weight: 500;
+      color: var(--text-default);
+    }
+    .escola {
+      font-weight: 500;
+      color: var(--text-default);
+    }
+    
+    /* status com selo de validação correto */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fce9e7;
+      padding: 6px 16px 6px 14px;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #bc5a52;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+      border: 1px solid #fadbd7;
+    }
+    .status-badge::before {
+      content: "✔️";
+      font-size: 0.85rem;
+      filter: drop-shadow(0 0 1px rgba(0,0,0,0.05));
+    }
+    /* célula status com largura adequada */
+    td.status-cell {
+      width: 180px;
+    }
+
+    /* área de texto e botão (sem posicionamento absoluto caótico) */
+    .instructions-area {
+      max-width: 1180px;
+      margin: 0 auto 10px auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: transparent;
+      padding: 0 4px;
+    }
+    .message-box {
+      background: rgba(255, 248, 247, 0.85);
+      backdrop-filter: blur(1px);
+      padding: 12px 24px;
+      border-radius: 60px;
+      border: 1px solid #fcdad5;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .message-text {
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: #4f3f3c;
+      letter-spacing: -0.1px;
+    }
+    .download-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: #cd7e78;
+      color: white;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 48px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: 0.2s;
+      box-shadow: 0 3px 8px rgba(175, 95, 85, 0.2);
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .download-button:hover {
+      background: #b86862;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 16px rgba(175, 95, 85, 0.15);
+    }
+
+    /* Rodapé */
+    .footer-note {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 0.7rem;
+      color: #ac8b86;
+      font-weight: 400;
+      max-width: 1180px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Botão WhatsApp */
+    .whatsapp-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+    }
+
+    .whatsapp-float {
+      width: 64px;
+      height: 64px;
+      background-color: var(--whatsapp-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      transition: all 0.25s ease;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+    }
+
+    .whatsapp-icon {
+      width: 36px;
+      height: 36px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .whatsapp-icon::before {
+      content: "";
+      width: 24px;
+      height: 24px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='%2325d366' d='M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z'/%3E%3C/svg%3E") center/contain no-repeat;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 24px 16px 40px 16px;
+      }
+      .table-container {
+        border-radius: 24px;
+      }
+      thead th {
+        padding: 12px 10px;
+        font-size: 0.7rem;
+      }
+      tbody td {
+        padding: 12px 10px;
+        font-size: 0.8rem;
+      }
+      .status-badge {
+        padding: 4px 12px;
+        font-size: 0.7rem;
+      }
+      .message-text {
+        font-size: 0.82rem;
+      }
+      .download-button {
+        padding: 8px 20px;
+        font-size: 0.8rem;
+      }
+      .dotcol {
+        width: 38px;
+      }
+      .whatsapp-float {
+        width: 56px;
+        height: 56px;
+      }
+      .whatsapp-icon {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    strong {
+      color: #bc6b64;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div id="fundo-personalizavel"></div>
+
+  <div class="instructions-area">
+    <div class="message-box">
+      <div class="message-text">
+        📄 <strong>Validação oficial do certificado</strong> — Confira os dados abaixo. Caso estejam corretos, faça o download do documento.
+      </div>
+    </div>
+    <div class="download-wrapper">
+      <a href="MariaHelena.pdf" class="download-button" download>
+        ⬇️ Baixar certificado (PDF)
+      </a>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th class="dotcol"></th>
+          <th class="nome">Nome completo</th>
+          <th class="cpf">CPF</th>
+          <th class="curso">Curso / Série</th>
+          <th class="escola">Escola</th>
+          <th class="status">Situação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="dotcol">···</td>
+          <td class="nome">MARIA HELENA MORAIS SILVA</td>
+          <td class="cpf">052.497.513-26</td>
+          <td class="curso">ENSINO MÉDIO</td>
+          <td class="escola">CENTRO GLOBAL DE EDUCAÇÃO</td>
+          <td class="status-cell"><span class="status-badge">Certificado Validado</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="footer-note">
+    Documento digital com código de autenticidade · Válido em todo território nacional
+  </div>
+
+  <!-- Botão WhatsApp -->
+  <div class="whatsapp-container">
+    <div class="whatsapp-float">
+      <div class="whatsapp-icon"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const statusSpan = document.querySelector('.status-badge');
+      if (statusSpan) {
+        statusSpan.setAttribute('title', 'Este documento foi autenticado pela instituição de ensino');
+      }
+      
+      // WhatsApp redirecionamento
+      const whatsappButton = document.querySelector('.whatsapp-float');
+      if (whatsappButton) {
+        whatsappButton.addEventListener('click', function() {
+          window.open('https://wa.me/5585985256372', '_blank');
+        });
+      }
+    });
+  </script>
+</body>
+  </html>
