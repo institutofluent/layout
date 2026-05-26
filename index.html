@@ -296,50 +296,44 @@
     </div>
   </div>
 
-  <!-- SDK DO BACK4APP (PARSE) -->
-  <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
-
   <script>
-    // CONFIGURAÇÃO DO BACK4APP
-    Parse.initialize(
-      "7LWHYGyx7GU1L7t11aHKuOlC34f2oaBZxsChRcg", // App ID
-      "4N28WVnVh13h5psN2eLoXzg4fUiyK50R2cGWkv2V"  // JavaScript Key
-    );
-    Parse.serverURL = "https://parseapi.back4app.com";
+    const APP_ID = "7LWHYGyx7GU1L7t11aHKuOlC34f2oaBZxsChRcg";
+    const JS_KEY = "nitrsUqPRBH8qGLj1cg4jYBsOn6GAW6covnzAptG";
 
-    // LÊ O TOKEN DA URL
     const params = new URLSearchParams(window.location.search);
     const token = params.get("token");
 
     async function buscarCertificado() {
-      if (!token) {
-        mostrarErro();
-        return;
-      }
+      if (!token) { mostrarErro(); return; }
 
       try {
-        const Certificado = Parse.Object.extend("Certificados");
-        const query = new Parse.Query(Certificado);
-        query.equalTo("token", token);
+        const where = encodeURIComponent(JSON.stringify({ token: token }));
+        const url = `https://parseapi.back4app.com/classes/Certificados?where=${where}&limit=1`;
 
-        const resultado = await query.first();
+        const resp = await fetch(url, {
+          headers: {
+            "X-Parse-Application-Id": APP_ID,
+            "X-Parse-Javascript-Key": JS_KEY
+          }
+        });
 
-        if (!resultado) {
+        const data = await resp.json();
+
+        if (!data.results || data.results.length === 0) {
           mostrarErro();
           return;
         }
 
-        // PREENCHE OS DADOS NA PÁGINA
-        document.getElementById("td-nome").textContent = resultado.get("nome");
-        document.getElementById("td-cpf").textContent = resultado.get("cpf");
-        document.getElementById("td-curso").textContent = resultado.get("curso");
-        document.getElementById("td-escola").textContent = resultado.get("escola");
-        document.getElementById("td-status").textContent = resultado.get("status");
+        const r = data.results[0];
 
-        // LINK DO PDF
-        const pdf = resultado.get("pdf");
-        if (pdf && pdf.url()) {
-          document.getElementById("btn-download").href = pdf.url();
+        document.getElementById("td-nome").textContent = r.nome || "";
+        document.getElementById("td-cpf").textContent = r.cpf || "";
+        document.getElementById("td-curso").textContent = r.curso || "";
+        document.getElementById("td-escola").textContent = r.escola || "";
+        document.getElementById("td-status").textContent = r.status || "";
+
+        if (r.pdf && r.pdf.url) {
+          document.getElementById("btn-download").href = r.pdf.url;
         }
 
         mostrarConteudo();
