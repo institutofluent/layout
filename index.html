@@ -299,7 +299,7 @@
 
   <script>
     const APP_ID = "7LWHYGyx7GU1L7t11aHKuOlC34f2oaBZxsChRcg";
-    const JS_KEY = "nitrsUqPRBH8qGLj1cg4jYBsOn6GAW6covnzAptG";
+    const JS_KEY = "DaDSt1n34eYISKECdIiZzyvrVymXXzpkNOKFVdsR";
 
     const params = new URLSearchParams(window.location.search);
     const token = params.get("token");
@@ -314,7 +314,7 @@
         const resp = await fetch(url, {
           headers: {
             "X-Parse-Application-Id": APP_ID,
-            "X-Parse-Javascript-Key": JS_KEY
+            "X-Parse-REST-API-Key": JS_KEY
           }
         });
 
